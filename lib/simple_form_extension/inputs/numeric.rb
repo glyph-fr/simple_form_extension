@@ -1,5 +1,6 @@
 class NumericInput < SimpleForm::Inputs::Base
-  def input(wrapper_options)
+
+  def input(wrapper_options = nil)
     input_html_options[:class] << "spinner-input"
 
     "<div class=\"input-group spinner\">
@@ -16,4 +17,5 @@ class NumericInput < SimpleForm::Inputs::Base
       </span>
     </div> ".html_safe
   end
+  
 end

@@ -1,5 +1,6 @@
 class DateTimeInput < SimpleForm::Inputs::DateTimeInput
-  def input(wrapper_options)
+
+  def input(wrapper_options = nil)
     "<div class=\"input-group\">
       #{@builder.text_field(attribute_name, input_html_options)}
       <div class=\"input-group-addon btn-onclick-event\">
@@ -7,4 +8,5 @@ class DateTimeInput < SimpleForm::Inputs::DateTimeInput
       </div>  
     </div> ".html_safe
   end
+  
 end

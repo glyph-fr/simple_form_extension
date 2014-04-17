@@ -1,5 +1,6 @@
 class ImageInput < SimpleForm::Inputs::Base
-  def input(wrapper_options)
+
+  def input(wrapper_options = nil)
     input_html_options[:class] << "image-upload"
 
     "<div class=\"fileinput fileinput-new\" data-provides=\"fileinput\">
@@ -16,6 +17,5 @@ class ImageInput < SimpleForm::Inputs::Base
       </div>
     </div>".html_safe
   end
+
 end
-
-
