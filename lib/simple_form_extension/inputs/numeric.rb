@@ -1,7 +1,7 @@
 class NumericInput < SimpleForm::Inputs::Base
 
   def input(wrapper_options = nil)
-    input_html_options[:class] << "spinner-input"
+    input_html_options[:class] << "spinner-input form-control"
 
     "<div class=\"input-group spinner\">
       #{@builder.text_field(attribute_name, input_html_options)}
