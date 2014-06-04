@@ -13,7 +13,6 @@ module SimpleForm
       end
 
       mapping = attempt_mapping(camelized, SimpleFormExtension::Inputs)
-      puts "FOUND #{ input_type } ? => #{ mapping.inspect }"
       return (discovery_cache[input_type] = mapping) if mapping
       _original_find_mapping(input_type)
     end
