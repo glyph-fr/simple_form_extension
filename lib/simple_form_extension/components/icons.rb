@@ -11,5 +11,3 @@ module SimpleFormExtension
     end
   end
 end
-
-SimpleForm::Inputs::Base.send(:include, SimpleFormExtension::Components::Icons)

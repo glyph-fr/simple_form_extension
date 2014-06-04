@@ -1,1 +1,7 @@
-require "simple_form_extension/components/icons"
+module SimpleFormExtension
+  module Components
+    extend ActiveSupport::Autoload
+
+    autoload :Icons
+  end
+end
