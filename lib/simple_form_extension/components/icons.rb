@@ -1,15 +1,15 @@
-module SimpleForm
+module SimpleFormExtension
   module Components
     module Icons
-		  def icon(wrapper_options)
-		    return icon_class unless options[:icon].nil?
-		  end
+      def icon(wrapper_options)
+        icon_class unless options[:icon].nil?
+      end
 
-		  def icon_class
-		    icon_tag = template.content_tag(:i, '', class: options[:icon])
-		  end
-	  end
-	end  
+      def icon_class
+        template.content_tag(:i, '', class: options[:icon])
+      end
+    end
+  end
 end
 
-SimpleForm::Inputs::Base.send(:include, SimpleForm::Components::Icons)
+SimpleForm::Inputs::Base.send(:include, SimpleFormExtension::Components::Icons)

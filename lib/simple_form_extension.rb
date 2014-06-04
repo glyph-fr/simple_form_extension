@@ -1,9 +1,10 @@
 require "simple_form_extension/version"
 
 module SimpleFormExtension
-  # Your code goes here...
+  extend ActiveSupport::Autoload
+
+  autoload :Components
+  autoload :Inputs
 end
 
-require "simple_form_extension/components"
-require "simple_form_extension/inputs"
-
+require "simple_form_extension/ext/form_builder"
