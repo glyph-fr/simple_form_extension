@@ -4,3 +4,6 @@ en:
       file:
         select: "Select file"
         change: "Change file"
+      image:
+        select: "Select image"
+        change: "Change image"
