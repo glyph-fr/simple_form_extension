@@ -1,0 +1,6 @@
+en:
+  simple_form:
+    extension:
+      file:
+        select: "Select file"
+        change: "Change file"

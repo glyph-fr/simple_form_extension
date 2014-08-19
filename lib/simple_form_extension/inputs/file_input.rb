@@ -1,6 +1,8 @@
 module SimpleFormExtension
   module Inputs
     class FileInput < SimpleForm::Inputs::Base
+      include SimpleFormExtension::Translations
+
       def input(wrapper_options = nil)
       	input_html_options[:class] << "file-upload"
 
@@ -11,8 +13,8 @@ module SimpleFormExtension
     	  </div>
     	  <div class=\"input-group-btn\">
     	    <button class=\"btn btn-default btn-file\" type=\"button\">
-    	      <span class=\"fileinput-new\">Select file</span>
-    	      <span class=\"fileinput-exists\">Change</span>
+    	      <span class=\"fileinput-new\">#{ translate('file.select') }</span>
+    	      <span class=\"fileinput-exists\">#{ translate('file.change') }</span>
     	      #{@builder.file_field(attribute_name, input_html_options)}
     	    </button>
     	    <button class=\"btn btn-danger fileinput-exists\" data-dismiss=\"fileinput\" type=\"button\"><i class=\"fa fa-times\"></i></button>

@@ -4,6 +4,7 @@ module SimpleFormExtension
   extend ActiveSupport::Autoload
 
   eager_autoload do
+    autoload :Translations
     autoload :Components
     autoload :Inputs
   end
