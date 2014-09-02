@@ -39,4 +39,20 @@ SimpleForm.setup do |config|
     b.use :hint,  wrap_with: { tag: 'p', class: 'help-block' }
   end
   
+  config.wrappers :label_popover, tag: 'div', class: 'form-group', error_class: 'has-error' do |b|
+    b.use :html5
+    b.use :placeholder
+  
+    b.wrapper tag: 'div', class: 'label-wrapper' do |label|
+      label.use :label, class: 'control-label'
+      label.use :popover
+    end
+
+    b.wrapper tag: 'div' do |ba|
+      ba.use :input, class: 'form-control'
+      ba.use :error, wrap_with: { tag: 'span', class: 'help-block' }
+      ba.use :hint,  wrap_with: { tag: 'p', class: 'help-block' }
+    end
+  end
+  
 end
