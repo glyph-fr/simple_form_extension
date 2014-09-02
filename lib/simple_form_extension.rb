@@ -11,5 +11,6 @@ module SimpleFormExtension
 end
 
 SimpleForm::Inputs::Base.send(:include, SimpleFormExtension::Components::Icons)
+SimpleForm::Inputs::Base.send(:include, SimpleFormExtension::Components::Popovers)
 
 SimpleForm.custom_inputs_namespaces << 'SimpleFormExtension::Inputs'

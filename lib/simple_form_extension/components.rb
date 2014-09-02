@@ -3,5 +3,6 @@ module SimpleFormExtension
     extend ActiveSupport::Autoload
 
     autoload :Icons
+    autoload :Popovers
   end
 end
