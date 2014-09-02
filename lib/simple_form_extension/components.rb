@@ -4,6 +4,5 @@ module SimpleFormExtension
 
     autoload :Icons
     autoload :Popovers
-    autoload :Tooltips
   end
 end
