@@ -33,7 +33,7 @@ SimpleForm.setup do |config|
 
     b.wrapper tag: 'div', class: "input-group" do |ba|
       ba.use :input, class: 'form-control'
-      ba.use :popover, tag: 'span', class: "btn btn-default", wrap_with: { tag: 'span', class: 'input-group-addon' }
+      ba.use :popover, wrap_with: { tag: 'span', class: 'input-group-addon' }
     end
     b.use :error, wrap_with: { tag: 'span', class: 'help-block' }
     b.use :hint,  wrap_with: { tag: 'p', class: 'help-block' }
