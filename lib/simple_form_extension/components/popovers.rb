@@ -19,6 +19,7 @@ module SimpleFormExtension
         template.content_tag(:i, '', options)
       end
 
+
       def popover_title
         popover_options[:title]
       end
