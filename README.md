@@ -18,6 +18,12 @@ Or install it yourself as:
 
 ## Usage
 
+To use the popover component, please include in a javascript file : 
+
+```javascript
+$('body').popover(selector: '[rel="popover"]')
+```
+
 TODO: Write usage instructions here
 
 ## Contributing
