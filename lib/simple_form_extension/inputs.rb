@@ -10,5 +10,6 @@ module SimpleFormExtension
     autoload :ColorInput
     autoload :FileInput
     autoload :ImageInput
+    autoload :RedactorInput
   end
 end

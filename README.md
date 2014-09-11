@@ -18,10 +18,17 @@ Or install it yourself as:
 
 ## Usage
 
-To use the popover component, please include in a javascript file : 
+To use the popover component, please include in a javascript file :
 
 ```javascript
 $('body').popover(selector: '[rel="popover"]')
+```
+
+For the [Redactor](https://github.com/SammyLin/redactor-rails) component to
+work, require the javascript files :
+
+```javascript
+//= require simple_form_extension
 ```
 
 TODO: Write usage instructions here

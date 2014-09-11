@@ -1,4 +1,5 @@
-require "simple_form_extension/version"
+require 'simple_form_extension/version'
+require 'redactor-rails'
 
 module SimpleFormExtension
   extend ActiveSupport::Autoload
@@ -14,3 +15,5 @@ SimpleForm::Inputs::Base.send(:include, SimpleFormExtension::Components::Icons)
 SimpleForm::Inputs::Base.send(:include, SimpleFormExtension::Components::Popovers)
 
 SimpleForm.custom_inputs_namespaces << 'SimpleFormExtension::Inputs'
+
+require 'simple_form_extension/railtie' if defined?(Rails)
