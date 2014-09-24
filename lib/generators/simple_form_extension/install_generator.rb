@@ -10,6 +10,7 @@ module SimpleFormExtension
 
       def copy_locales
         template "config/locales/simple_form_extension.en.yml"
+        template "config/locales/simple_form_extension.fr.yml"
       end
     end
   end

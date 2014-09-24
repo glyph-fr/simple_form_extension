@@ -9,8 +9,8 @@ module SimpleFormExtension
         "<div class=\"fileinput fileinput-new\" data-provides=\"fileinput\">
           <div class=\"\">
             <div class=\"btn btn-default btn-file\" type=\"button\">
-              <span class=\"fileinput-new\">#{ translate('image.select') }</span>
-              <span class=\"fileinput-exists\">#{ translate('image.change') }</span>
+              <span class=\"fileinput-new\">#{ _translate('image.select') }</span>
+              <span class=\"fileinput-exists\">#{ _translate('image.change') }</span>
               #{@builder.file_field(attribute_name, input_html_options)}
             </div>
             <button class=\"btn btn-danger fileinput-exists pull-right\" data-dismiss=\"fileinput\" type=\"button\"><i class=\"fa fa-times\"></i></button>

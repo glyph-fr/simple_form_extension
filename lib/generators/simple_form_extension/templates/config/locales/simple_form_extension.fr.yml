@@ -1,0 +1,9 @@
+fr:
+  simple_form:
+    extension:
+      file:
+        select: "Sélectionnez un fichier"
+        change: "Changer"
+      image:
+        select: "Sélectionnez une image"
+        change: "Changer"
