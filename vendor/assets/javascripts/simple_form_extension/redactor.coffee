@@ -10,11 +10,14 @@ initRedactor = ->
     # Avoid double initialization
     unless $textArea.data('initialized.redactor')
       $textArea.redactor
-        imageUpload: "/redactor_rails/pictures?" + params
+        imageUpload: ["/redactor_rails/pictures", params].join('?')
         imageGetJson: "/redactor_rails/pictures"
         path: "/assets/redactor-rails"
         css: "style.css"
       $textArea.data('initialized.redactor', true)
 
-$(document).ready(initRedactor);
-$(window).bind('page:change', initRedactor);
+
+$(document).ready ->
+  initRedactor() if Turbolinks is undefined
+
+$(document).on('page:change', initRedactor);
