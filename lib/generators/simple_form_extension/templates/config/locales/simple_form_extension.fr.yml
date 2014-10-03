@@ -7,3 +7,9 @@ fr:
       image:
         select: "Sélectionnez une image"
         change: "Changer"
+      date:
+        format: 'd/m/Y'
+      datetime:
+        format: 'd/m/Y H:i'
+      shared:
+        week_start_day: 1

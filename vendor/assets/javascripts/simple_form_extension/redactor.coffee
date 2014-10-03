@@ -1,4 +1,4 @@
-initRedactor = ->
+onPageReady ->
   csrf_token = $('meta[name=csrf-token]').attr('content')
   csrf_param = $('meta[name=csrf-param]').attr('content')
 
@@ -15,9 +15,3 @@ initRedactor = ->
         path: "/assets/redactor-rails"
         css: "style.css"
       $textArea.data('initialized.redactor', true)
-
-
-$(document).ready ->
-  initRedactor() if Turbolinks is undefined
-
-$(document).on('page:change', initRedactor);
