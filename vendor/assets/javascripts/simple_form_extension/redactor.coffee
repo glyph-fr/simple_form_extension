@@ -14,14 +14,14 @@ onPageReady ->
           'unorderedlist', 'orderedlist', 'outdent', 'indent',
           'image', 'video', 'file', 'table', 'link', 'alignment', 'horizontalrule']
         minHeight: 400
-        plugins: [
-          "fontcolor"
-          "fontsize"
-        ]
         imageUpload: ["/redactor_rails/pictures", params].join('?')
         imageGetJson: "/redactor_rails/pictures"
         fileUpload: ["/redactor_rails/documents", params].join('?')
         fileGetJson: "/redactor_rails/documents"
+        plugins: [
+          "fontcolor"
+          "fontsize"
+        ]
         path: "/assets/redactor-rails"
         css: "style.css"
         lang: "fr"
