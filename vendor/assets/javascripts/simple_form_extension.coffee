@@ -1,4 +1,6 @@
 #= require redactor-rails/redactor.min
+#= require redactor-rails/langs/fr
+#= require redactor-rails/plugins
 #= require jquery.datetimepicker
 #= require_self
 #= require_tree ./simple_form_extension
