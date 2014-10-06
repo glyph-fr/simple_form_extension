@@ -20,6 +20,8 @@ onPageReady ->
         ]
         imageUpload: ["/redactor_rails/pictures", params].join('?')
         imageGetJson: "/redactor_rails/pictures"
+        fileUpload: ["/redactor_rails/documents", params].join('?')
+        fileGetJson: "/redactor_rails/documents"
         path: "/assets/redactor-rails"
         css: "style.css"
         lang: "fr"
@@ -44,7 +46,7 @@ onPageReady ->
           "deleted"
           "link"
         ]
-        # lang: "fr"      
+        lang: "fr"      
         
       $textArea.data('initialized.redactor', true)
 
