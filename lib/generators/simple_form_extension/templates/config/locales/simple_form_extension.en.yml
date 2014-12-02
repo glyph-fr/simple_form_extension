@@ -13,3 +13,5 @@ en:
         format: 'm/d/Y H:i'
       shared:
         week_start_day: 0
+      selectize:
+        add: "Add"

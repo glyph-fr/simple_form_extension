@@ -13,3 +13,5 @@ fr:
         format: 'd/m/Y H:i'
       shared:
         week_start_day: 1
+      selectize:
+        add: "Ajouter"
