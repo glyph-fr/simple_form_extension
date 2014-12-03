@@ -59,7 +59,7 @@ module SimpleFormExtension
       end
 
       def value
-        @value ||= input_html_options[:value] || object.send(attribute_name)
+        @value ||= options_fetch(:value) { object.send(attribute_name) }
       end
 
       private
@@ -73,6 +73,15 @@ module SimpleFormExtension
           raise ArgumentError.new "The individual collection items should " \
             "either be single items or a hash with :text and :value fields"
         end
+      end
+
+      def options_fetch(key, &block)
+        [options, input_html_options].each do |hash|
+          return hash[key] if hash.key?(key)
+        end
+
+        # Return default block value or nil if no block was given
+        block ? block.call : nil
       end
     end
   end
