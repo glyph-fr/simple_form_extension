@@ -44,3 +44,4 @@ onPageReady ->
   $('body').on 'click', '.date .datetimepicker-trigger', (e) ->
     $input = $(e.currentTarget).closest('.date').find('input.date')
     DatePicker.forInput($input, DatePicker).show()
+    

@@ -49,4 +49,3 @@ onPageReady ->
         lang: "fr"      
         
       $textArea.data('initialized.redactor', true)
-
