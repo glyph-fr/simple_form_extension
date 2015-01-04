@@ -33,12 +33,12 @@ module SimpleFormExtension
 
       def multi?
         (options.key?(:multi) && !!options[:multi]) ||
-          value.class.include?(Enumerable)
+          enumerable?(value)
       end
 
       def collection
         if (collection = options[:collection])
-          if collection.class.include?(Enumerable)
+          if enumerable?(collection)
             collection.map(&method(:serialize_option))
           else
             (object.send(collection) || []).map(&method(:serialize_option))
@@ -65,8 +65,10 @@ module SimpleFormExtension
       private
 
       def serialize_option(option)
-        if option.kind_of?(Hash) && options.key?(:text) && option.key?(:value)
+        if option.kind_of?(Hash) && option.key?(:text) && option.key?(:value)
           option
+        elsif option.kind_of?(ActiveRecord::Base)
+          { text: name_for(option), value: option.id }
         elsif !option.kind_of?(Hash)
           { text: option.to_s, value: option }
         else
@@ -82,6 +84,14 @@ module SimpleFormExtension
 
         # Return default block value or nil if no block was given
         block ? block.call : nil
+      end
+
+      def enumerable?(object)
+        object.class.include?(Enumerable) || ActiveRecord::Relation === object
+      end
+
+      def name_for(option)
+        option.try(:name) || options.try(:title) || option.to_s
       end
     end
   end
