@@ -7,6 +7,8 @@
 #= require_self
 #= require_tree ./simple_form_extension
 
+$.fn.simpleForm = {}
+
 window.onPageReady = (callback) ->
   $(document).ready ->
     callback() if Turbolinks is undefined

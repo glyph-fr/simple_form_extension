@@ -43,13 +43,12 @@ class Selectize
         </div>
       """
 
-onPageReady ->
-  $selectizes = $('[data-selectize]')
-
-  return unless $selectizes.length
-
-  $('[data-selectize]').each (i, el) ->
+$.fn.simpleFormSelectize = ->
+  @each (i, el) ->
     $select = $(el)
     return if $select.data('simple-form:selectize')
     instance = new Selectize($select)
     $select.data('simple-form:selectize', instance)
+
+onPageReady ->
+  $('[data-selectize]').simpleFormSelectize()
