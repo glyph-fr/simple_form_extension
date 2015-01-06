@@ -10,6 +10,7 @@ class Selectize
 
     @$el.selectize(
       mode: if @single then 'single' else 'multi'
+      maxItems: if @single then 1 else @$el.data('max-items')
       sortField: 'text'
       plugins: ['remove_button']
       create: creatable

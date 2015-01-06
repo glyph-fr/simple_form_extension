@@ -21,7 +21,8 @@ module SimpleFormExtension
           :'creatable' => creatable?,
           :'multi' => multi?,
           :'add-translation' => _translate('selectize.add'),
-          :'collection' => collection
+          :'collection' => collection,
+          :'max-items' => max_items
         )
 
         @builder.hidden_field attribute_name, input_html_options
@@ -34,6 +35,10 @@ module SimpleFormExtension
       def multi?
         (options.key?(:multi) && !!options[:multi]) ||
           enumerable?(value)
+      end
+
+      def max_items
+        options[:max_items]
       end
 
       def collection
