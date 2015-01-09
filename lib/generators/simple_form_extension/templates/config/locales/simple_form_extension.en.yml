@@ -4,6 +4,7 @@ en:
       file:
         select: "Select file"
         change: "Change file"
+        existing_file: "Existing file"
       image:
         select: "Select image"
         change: "Change image"
