@@ -36,10 +36,31 @@ module SimpleFormExtension
       def existing_image_tag
         if @builder.object.send(:"#{ attribute_name }?")
           image_url = @builder.object.send(attribute_name).url(image_style)
-          image_tag(image_url, style: 'height: 100%; width: 100%; display: block;')
+
+          container_style = 'position: relative; height: 100%; width: 100%; min-height: 50px;min-width: 58px; display: block;'
+
+          content_tag(:div, style: container_style, data: { provides: 'existing-file' }) do
+            image_tag(image_url, style: 'height: 100%; width: 100%; display: block;', data: { toggle: 'existing-file' }) +
+            remove_image_button
+          end
         else
           content_tag(:div, '', class: 'empty-thumbnail')
         end
+      end
+
+      def remove_image_button
+        return unless object.respond_to?(:"#{ remove_attachment_method }=")
+
+        button_style = 'position: absolute; top: 10px; left: 10px;'
+
+        content_tag(:button, class: 'btn btn-danger', style: button_style, type: 'button', data: { dismiss: 'existing-file' }) do
+          content_tag(:i, '', class: 'fa fa-remove', data: { :'removed-class' => 'fa fa-refresh' }) +
+          @builder.hidden_field(remove_attachment_method, class: 'remove-file-input', value: nil)
+        end
+      end
+
+      def remove_attachment_method
+        options[:remove_method] || :"remove_#{ attribute_name }"
       end
 
       def image_style
