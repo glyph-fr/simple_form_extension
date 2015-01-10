@@ -9,9 +9,13 @@ en:
         select: "Select image"
         change: "Change image"
       date:
-        format: 'm/d/Y'
+        format:
+          js: 'Y/m/d'
+          rails: '%Y/%m/%d'
       datetime:
-        format: 'm/d/Y H:i'
+        format:
+          js: 'Y/m/d H:i'
+          rails: '%Y/%m/%d %H:%M'
       shared:
         week_start_day: 0
       selectize:
