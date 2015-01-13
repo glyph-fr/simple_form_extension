@@ -3,6 +3,7 @@
 #= require redactor-rails/plugins
 #= require selectize
 #= require spinbox
+#= require jasny-bootstrap
 #= require jquery.datetimepicker
 #= require_self
 #= require_tree ./simple_form_extension
