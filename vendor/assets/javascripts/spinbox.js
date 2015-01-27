@@ -35,7 +35,7 @@
       e.preventDefault();
     });
     this.options = $.extend({}, $.fn.spinbox.defaults, options);
-    this.$input = this.$element.find('.spinner-input');
+    this.$input = this.$element.find('.spinbox-input');
     this.$element.on('focusin.fu.spinbox', this.$input, $.proxy(this.changeFlag, this));
     this.$element.on('focusout.fu.spinbox', this.$input, $.proxy(this.change, this));
     this.$element.on('keydown.fu.spinbox', this.$input, $.proxy(this.keydown, this));
@@ -45,19 +45,19 @@
     this.mousewheelTimeout = {};
 
     if (this.options.hold) {
-      this.$element.on('mousedown.fu.spinbox', '.spinner-up', $.proxy(function() {
+      this.$element.on('mousedown.fu.spinbox', '.spinbox-up', $.proxy(function() {
         this.startSpin(true);
       }, this));
-      this.$element.on('mouseup.fu.spinbox', '.spinner-up, .spinner-down', $.proxy(this.stopSpin, this));
-      this.$element.on('mouseout.fu.spinbox', '.spinner-up, .spinner-down', $.proxy(this.stopSpin, this));
-      this.$element.on('mousedown.fu.spinbox', '.spinner-down', $.proxy(function() {
+      this.$element.on('mouseup.fu.spinbox', '.spinbox-up, .spinbox-down', $.proxy(this.stopSpin, this));
+      this.$element.on('mouseout.fu.spinbox', '.spinbox-up, .spinbox-down', $.proxy(this.stopSpin, this));
+      this.$element.on('mousedown.fu.spinbox', '.spinbox-down', $.proxy(function() {
         this.startSpin(false);
       }, this));
     } else {
-      this.$element.on('click.fu.spinbox', '.spinner-up', $.proxy(function() {
+      this.$element.on('click.fu.spinbox', '.spinbox-up', $.proxy(function() {
         this.step(true);
       }, this));
-      this.$element.on('click.fu.spinbox', '.spinner-down', $.proxy(function() {
+      this.$element.on('click.fu.spinbox', '.spinbox-down', $.proxy(function() {
         this.step(false);
       }, this));
     }
@@ -340,6 +340,7 @@
 
     bindMousewheelListeners: function() {
       var inputEl = this.$input.get(0);
+      console.log(this.$input)
       if (inputEl.addEventListener) {
         //IE 9, Chrome, Safari, Opera
         inputEl.addEventListener('mousewheel', $.proxy(this.mousewheelHandler, this), false);
@@ -352,27 +353,29 @@
     },
 
     mousewheelHandler: function(event) {
-      var e = window.event || event; // old IE support
-      var delta = Math.max(-1, Math.min(1, (e.wheelDelta || -e.detail)));
-      var self = this;
+      if (!this.options.disabled) {
+        var e = window.event || event; // old IE support
+        var delta = Math.max(-1, Math.min(1, (e.wheelDelta || -e.detail)));
+        var self = this;
 
-      clearTimeout(this.mousewheelTimeout);
-      this.mousewheelTimeout = setTimeout(function() {
-        self.triggerChangedEvent();
-      }, 300);
+        clearTimeout(this.mousewheelTimeout);
+        this.mousewheelTimeout = setTimeout(function () {
+          self.triggerChangedEvent();
+        }, 300);
 
-      if (delta < 0) {
-        this.step(true);
-      } else {
-        this.step(false);
+        if (delta < 0) {
+          this.step(true);
+        } else {
+          this.step(false);
+        }
+
+        if (e.preventDefault) {
+          e.preventDefault();
+        } else {
+          e.returnValue = false;
+        }
+        return false;
       }
-
-      if (e.preventDefault) {
-        e.preventDefault();
-      } else {
-        e.returnValue = false;
-      }
-      return false;
     }
   };
 
@@ -424,7 +427,7 @@
   // DATA-API
 
   $(document).on('mousedown.fu.spinbox.data-api', '[data-initialize=spinbox]', function(e) {
-    var $control = $(e.target).closest('.spinner');
+    var $control = $(e.target).closest('.spinbox');
     if (!$control.data('fu.spinbox')) {
       $control.spinbox($control.data());
     }

@@ -2,9 +2,9 @@ module SimpleFormExtension
   module Inputs
     class NumericInput < SimpleForm::Inputs::Base
       def input(wrapper_options = nil)
-        input_html_options[:class] << "spinner-input form-control"
+        input_html_options[:class] << "form-control spinbox-input"
         if options.fetch(:spinner, true)
-          "<div class=\"input-group spinner\">
+          "<div class=\"input-group spinner-box-input\">
             #{@builder.text_field(attribute_name, input_html_options)}
             <span class=\"input-group-btn\">
               <span class=\"spinner-buttons btn-group-vertical\">

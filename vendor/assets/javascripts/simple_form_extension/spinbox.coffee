@@ -5,7 +5,7 @@ class Spinbox
     @$el.spinbox()
 
 onPageReady ->
-  $spinbox = $('.spinner')
+  $spinbox = $('.spinner-box-input')
 
   return unless $spinbox.length
 
