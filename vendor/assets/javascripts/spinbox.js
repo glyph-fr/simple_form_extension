@@ -340,7 +340,6 @@
 
     bindMousewheelListeners: function() {
       var inputEl = this.$input.get(0);
-      console.log(this.$input)
       if (inputEl.addEventListener) {
         //IE 9, Chrome, Safari, Opera
         inputEl.addEventListener('mousewheel', $.proxy(this.mousewheelHandler, this), false);
