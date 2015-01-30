@@ -12,18 +12,26 @@ onPageReady ->
       $textArea.redactor
         buttons: ['html', 'formatting',  'bold', 'italic', 'underline', 'deleted',
           'unorderedlist', 'orderedlist', 'outdent', 'indent',
-          'image', 'video', 'file', 'table', 'link', 'alignment', 'horizontalrule']
+          'image', 'file','link', 'alignment', 'horizontalrule']
         minHeight: 400
+        removeEmpty: ['strong', 'em', 'span', 'p', 'h1', 'h2', 'h3']
+        buttonSource: true
+        replaceDivs: false
+        linebreaks: false
         imageUpload: ["/redactor_rails/pictures", params].join('?')
-        imageGetJson: "/redactor_rails/pictures"
+        imageManagerJson: "/redactor_rails/pictures"
         fileUpload: ["/redactor_rails/documents", params].join('?')
-        fileGetJson: "/redactor_rails/documents"
+        fileManagerJson: "/redactor_rails/documents"
         plugins: [
+          "clips"
+          "filemanager"
+          "imagemanager"
+          "video"
+          "table"
           "fontcolor"
           "fontsize"
         ]
         path: "/assets/redactor-rails"
-        css: "style.css"
         lang: "fr"
       $textArea.data('initialized.redactor', true)
 
