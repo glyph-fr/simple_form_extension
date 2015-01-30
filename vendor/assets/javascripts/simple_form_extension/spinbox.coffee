@@ -2,8 +2,9 @@ class Spinbox
   constructor: (@$el) ->
     @el = @$el[0]
 
-    @$el.spinbox()
-
+    @$el.spinbox(max: Number.POSITIVE_INFINITY)
+      
+         
 onPageReady ->
   $spinbox = $('.spinner-box-input')
 
