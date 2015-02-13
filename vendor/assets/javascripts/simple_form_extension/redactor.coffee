@@ -13,11 +13,13 @@ onPageReady ->
         buttons: ['html', 'formatting',  'bold', 'italic', 'underline', 'deleted',
           'unorderedlist', 'orderedlist', 'outdent', 'indent',
           'image', 'file','link', 'alignment', 'horizontalrule']
+        removeEmpty: ['strong', 'em', 'span', 'p', 'h1', 'h2', 'h3', 'h4', 'div']
+        allowedTags: ['p', 'h1', 'h2', 'pre', 'div']
         minHeight: 400
-        removeEmpty: ['strong', 'em', 'span', 'p', 'h1', 'h2', 'h3']
         buttonSource: true
         replaceDivs: false
-        linebreaks: false
+        linebreaks: true
+        toolbarFixed: false
         imageUpload: ["/redactor_rails/pictures", params].join('?')
         imageManagerJson: "/redactor_rails/pictures"
         fileUpload: ["/redactor_rails/documents", params].join('?')

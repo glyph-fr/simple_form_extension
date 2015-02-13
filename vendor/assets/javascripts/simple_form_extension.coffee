@@ -1,4 +1,4 @@
-#= require redactor-rails/redactor.min
+#= require redactor-rails/redactor
 #= require redactor-rails/langs/fr
 #= require redactor-rails/plugins
 #= require selectize
