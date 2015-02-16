@@ -18,7 +18,8 @@ onPageReady ->
         minHeight: 400
         buttonSource: true
         replaceDivs: false
-        linebreaks: true
+        paragraphize: true
+        linebreaks: false
         toolbarFixed: false
         imageUpload: ["/redactor_rails/pictures", params].join('?')
         imageManagerJson: "/redactor_rails/pictures"
