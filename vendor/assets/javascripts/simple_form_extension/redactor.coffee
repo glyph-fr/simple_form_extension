@@ -14,11 +14,9 @@ onPageReady ->
           'unorderedlist', 'orderedlist', 'outdent', 'indent',
           'image', 'file','link', 'alignment', 'horizontalrule']
         removeEmpty: ['strong', 'em', 'span', 'p', 'h1', 'h2', 'h3', 'h4', 'div']
-        allowedTags: ['p', 'h1', 'h2', 'pre', 'div']
         minHeight: 400
         buttonSource: true
         replaceDivs: false
-        paragraphize: true
         linebreaks: false
         toolbarFixed: false
         imageUpload: ["/redactor_rails/pictures", params].join('?')
