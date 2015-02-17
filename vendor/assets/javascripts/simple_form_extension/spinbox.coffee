@@ -1,17 +1,16 @@
 class Spinbox
   constructor: (@$el) ->
-    @el = @$el[0]
-
     @$el.spinbox(max: Number.POSITIVE_INFINITY)
       
+
+$.fn.simpleFormSpinbox = ->
+  @each (i, el) ->
+    $input = $(el)
+    return if $input.data('simple-form:spinbox')
+    instance = new Spinbox($input)
+    $input.data('simple-form:spinbox', instance)
          
 onPageReady ->
   $spinbox = $('.spinner-box-input')
-
   return unless $spinbox.length
-
-  $spinbox.each (i, el) ->
-    $spinner = $(el)
-    return if $spinner.data('simple-form:spinner')
-    instance = new Spinbox($spinner)
-    $spinner.data('simple-form:spinner', instance)
+  $spinbox.simpleFormSpinbox()
