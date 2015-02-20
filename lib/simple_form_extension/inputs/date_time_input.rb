@@ -25,7 +25,7 @@ module SimpleFormExtension
           @builder.text_field(attribute_name, input_html_options) +
 
           content_tag(:span, class: 'input-group-btn') do
-            content_tag(:button, class: 'btn btn-default datetimepicker-trigger') do
+            content_tag(:button, type: 'button', class: 'btn btn-default datetimepicker-trigger') do
               content_tag(:i, '', class: 'fa fa-calendar')
             end
           end
