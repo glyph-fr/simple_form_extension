@@ -13,6 +13,8 @@ module SimpleFormExtension
       #   :'preload' => preload,
       #
       def input(wrapper_options = {})
+        @attribute_name = reflection.foreign_key if relation?
+        puts "RELATION ? => #{ relation? } // #{ reflection.foreign_key }"
         input_html_options[:data] ||= {}
 
         input_html_options[:data].merge!(
@@ -97,6 +99,14 @@ module SimpleFormExtension
 
       def name_for(option)
         option.try(:name) || options.try(:title) || option.to_s
+      end
+
+      def relation?
+        !!reflection
+      end
+
+      def reflection
+        @reflection ||= object.class.reflect_on_association(attribute_name)
       end
     end
   end
