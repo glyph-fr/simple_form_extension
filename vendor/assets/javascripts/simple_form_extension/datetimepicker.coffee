@@ -13,7 +13,7 @@ class DateTimePicker
   initializePicker: ->
     @$input.datetimepicker(
       lang: @locale
-      format: @$input.data('datetime-format')
+      format: @$input.data('format')
       dayOfWeekStart: @$input.data('week-start-day')
     )
 
@@ -25,8 +25,16 @@ class DatePicker extends DateTimePicker
     @$input.datetimepicker(
       lang: @locale
       timepicker: false
-      format: @$input.data('date-format')
+      format: @$input.data('format')
       dayOfWeekStart: @$input.data('week-start-day')
+    )
+
+class TimePicker extends DateTimePicker
+  initializePicker: ->
+    @$input.datetimepicker(
+      lang: @locale
+      datepicker: false,
+      format: @$input.data('format')
     )
 
 # Lazy initialization of date and datetime pickers
@@ -45,3 +53,10 @@ onPageReady ->
     $input = $(e.currentTarget).closest('.date').find('input.date')
     DatePicker.forInput($input, DatePicker).show()
     
+  $('body').on 'click', 'input.time', (e) ->
+    TimePicker.forInput($(e.currentTarget), TimePicker).show()
+
+  $('body').on 'click', '.time .datetimepicker-trigger', (e) ->
+    $input = $(e.currentTarget).closest('.time').find('input.time')
+    TimePicker.forInput($input, TimePicker).show()
+      

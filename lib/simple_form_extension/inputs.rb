@@ -11,7 +11,6 @@ module SimpleFormExtension
     autoload :FileInput
     autoload :ImageInput
     autoload :RedactorInput
-    autoload :AirRedactorInput
     autoload :SelectizeInput
   end
 end

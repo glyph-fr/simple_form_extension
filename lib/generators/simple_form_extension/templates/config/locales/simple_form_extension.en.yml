@@ -12,6 +12,10 @@ en:
         format:
           js: 'Y/m/d'
           rails: '%Y/%m/%d'
+      time:
+        format:
+          js: 'H:i'
+          rails: '%H:%M'    
       datetime:
         format:
           js: 'Y/m/d H:i'

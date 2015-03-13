@@ -8,6 +8,10 @@ fr:
       image:
         select: "Sélectionnez une image"
         change: "Changer"
+      time:
+        format:
+          js: 'H:i'
+          rails: '%H:%M'      
       date:
         format:
           js: 'd/m/Y'
