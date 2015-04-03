@@ -1,0 +1,41 @@
+/* Jasny Bootstrap Fileupload overrides */
+
+@import "para/admin/theme/variables"
+@import "compass/css3/border-radius"
+
+.fileinput
+  margin-bottom: 0
+  display: block
+  .uneditable-input
+    background-color: $input-bg-disabled    
+
+.fileinput-new.input-group .btn-file
+.fileinput.input-group .btn-file
+  +border-right-radius($border-radius-base)
+  border-color: $input-border
+
+.fileinput.input-group .input-group-btn
+  .form-control.file
+    padding: 0 !important
+    position: absolute
+
+.fileinput
+  .input-group-btn > .btn:hover,
+  .input-group-btn > .btn:focus,
+  .input-group-btn > .btn:active
+    z-index: 0
+
+.fileinput-preview.thumbnail
+  width: auto
+  height: auto
+  min-width: 80px
+  min-height: 80px
+  max-height: 500px
+  margin-bottom: 0
+  margin-top: 5px
+  background-color: $input-bg
+
+  .empty-thumbnail  
+    width: 250px
+    height: 200px
+    background-color: $input-bg
