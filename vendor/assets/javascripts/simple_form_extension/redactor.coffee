@@ -12,6 +12,13 @@ class Redactor
       replaceDivs: false
       linebreaks: false
       toolbarFixed: false
+      formattingAdd: [
+        {
+          tag: 'img'
+          title: 'Image 100%'
+          class: 'img-responsive'
+        }
+      ]
       imageUpload: ["/redactor_rails/pictures", params].join('?')
       imageManagerJson: "/redactor_rails/pictures"
       fileUpload: ["/redactor_rails/documents", params].join('?')
