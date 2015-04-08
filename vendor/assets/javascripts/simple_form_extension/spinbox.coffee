@@ -11,6 +11,7 @@ $.fn.simpleFormSpinbox = ->
     $input.data('simple-form:spinbox', instance)
          
 onPageReady ->
-  $spinbox = $('.spinner-box-input')
+  $spinbox = $('.spinbox')
   return unless $spinbox.length
   $spinbox.simpleFormSpinbox()
+  
