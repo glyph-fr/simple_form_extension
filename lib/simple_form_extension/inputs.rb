@@ -12,5 +12,6 @@ module SimpleFormExtension
     autoload :ImageInput
     autoload :RedactorInput
     autoload :SelectizeInput
+    autoload :SliderInput
   end
 end

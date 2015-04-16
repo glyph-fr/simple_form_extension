@@ -4,7 +4,6 @@ class Selectize
     @el = @$el[0]
 
     creatable = @$el.data('creatable')
-    addTranslation = @$el.data('add-translation')
 
     @$el.val('')
 
@@ -37,10 +36,11 @@ class Selectize
     @el.selectize.addItem(data.value)
 
   renderOptions: ->
-    option_create: (data) ->
+    option_create: (data) =>
       """
         <div class="create" data-selectable="">
-          #{ @addTranslation } <strong>#{ data.input }</strong> ...
+          #{ @$el.data('add-translation') }
+          <strong>#{ data.input }</strong> ...
         </div>
       """
 

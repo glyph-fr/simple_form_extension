@@ -5,6 +5,7 @@
 #= require spinbox
 #= require jasny-bootstrap
 #= require jquery.datetimepicker
+#= require bootstrap-slider
 #= require_self
 #= require_tree ./simple_form_extension
 
