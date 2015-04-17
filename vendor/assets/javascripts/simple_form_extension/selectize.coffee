@@ -17,7 +17,6 @@ class Selectize
 
     @$el.val('')
 
-    console.log _.defaults @options, @selectizeDefaults()
     @$el.selectize(
       _.defaults @options, @selectizeDefaults()
     )
