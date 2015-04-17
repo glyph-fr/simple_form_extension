@@ -1,20 +1,25 @@
 class Selectize
-  constructor: (@$el) ->
+
+  selectizeDefaults: ->
+    mode: if @single then 'single' else 'multi'
+    maxItems: if @single then 1 else @$el.data('max-items')
+    sortField: 'text'
+    plugins: ['remove_button']
+    create: @creatable
+    render: @renderOptions()
+    options: @$el.data('collection')
+
+  constructor: (@$el, @options) ->
     @single = @$el.data('multi') is false
     @el = @$el[0]
 
-    creatable = @$el.data('creatable')
+    @creatable = @$el.data('creatable')
 
     @$el.val('')
 
+    console.log _.defaults @options, @selectizeDefaults()
     @$el.selectize(
-      mode: if @single then 'single' else 'multi'
-      maxItems: if @single then 1 else @$el.data('max-items')
-      sortField: 'text'
-      plugins: ['remove_button']
-      create: creatable
-      render: @renderOptions()
-      options: @$el.data('collection')
+      _.defaults @options, @selectizeDefaults()
     )
 
     if (value = @$el.data('value'))
@@ -44,11 +49,11 @@ class Selectize
         </div>
       """
 
-$.fn.simpleFormSelectize = ->
+$.fn.simpleFormSelectize = (options = {}) ->
   @each (i, el) ->
     $select = $(el)
     return if $select.data('simple-form:selectize')
-    instance = new Selectize($select)
+    instance = new Selectize($select, options)
     $select.data('simple-form:selectize', instance)
 
 onPageReady ->
