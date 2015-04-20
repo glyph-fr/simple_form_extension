@@ -1,5 +1,6 @@
 require 'simple_form_extension/version'
 require 'redactor-rails'
+require 'underscore-rails'
 
 module SimpleFormExtension
   extend ActiveSupport::Autoload
