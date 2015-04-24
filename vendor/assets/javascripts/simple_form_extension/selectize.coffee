@@ -5,7 +5,7 @@ class Selectize
     maxItems: if @single then 1 else @$el.data('max-items')
     sortField: 'text'
     plugins: ['remove_button']
-    create: @creatable
+    create: @$el.data('creatable')
     render: @renderOptions()
     options: @$el.data('collection')
 
@@ -13,12 +13,10 @@ class Selectize
     @single = @$el.data('multi') is false
     @el = @$el[0]
 
-    @creatable = @$el.data('creatable')
-
     @$el.val('')
 
     @$el.selectize(
-      _.defaults @options, @selectizeDefaults()
+      $.extend @selectizeDefaults(), @options
     )
 
     if (value = @$el.data('value'))
