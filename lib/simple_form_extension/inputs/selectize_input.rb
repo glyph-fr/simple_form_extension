@@ -13,7 +13,7 @@ module SimpleFormExtension
       #   :'preload' => preload,
       #
       def input(wrapper_options = {})
-        @attribute_name = reflection.foreign_key if relation?
+        @attribute_name = foreign_key if relation?
         input_html_options[:data] ||= {}
 
         input_html_options[:data].merge!(
@@ -87,7 +87,7 @@ module SimpleFormExtension
         [options, input_html_options].each do |hash|
           return hash[key] if hash.key?(key)
         end
-
+  
         # Return default block value or nil if no block was given
         block ? block.call : nil
       end
@@ -106,6 +106,14 @@ module SimpleFormExtension
 
       def reflection
         @reflection ||= object.class.reflect_on_association(attribute_name)
+      end
+
+      def foreign_key
+        @foreign_key ||= if reflection.class.in? [ActiveRecord::Reflection::ThroughReflection, ActiveRecord::Reflection::HasManyReflection]
+          reflection.foreign_key.pluralize
+        else
+          reflection.foreign_key
+        end
       end
     end
   end
