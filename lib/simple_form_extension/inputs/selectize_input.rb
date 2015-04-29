@@ -109,7 +109,7 @@ module SimpleFormExtension
       end
 
       def foreign_key
-        @foreign_key ||= if reflection.class.in? [ActiveRecord::Reflection::ThroughReflection, ActiveRecord::Reflection::HasManyReflection]
+        @foreign_key ||= if reflection.macro == :has_many
           reflection.foreign_key.pluralize
         else
           reflection.foreign_key
