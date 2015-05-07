@@ -13,6 +13,6 @@ $.fn.simpleForm = {}
 
 window.onPageReady = (callback) ->
   $(document).ready ->
-    callback() if Turbolinks is undefined
+    callback() if window.Turbolinks is undefined
 
   $(document).on('page:change', callback);
