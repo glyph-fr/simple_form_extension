@@ -1,3 +1,3 @@
 module SimpleFormExtension
-  VERSION = "1.2.11"
+  VERSION = "1.2.18"
 end

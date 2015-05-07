@@ -14,7 +14,7 @@ class DateTimePicker
     @$input.datetimepicker(
       lang: @locale
       format: @$input.data('format')
-      step: @$input.data('step')
+      step: parseInt @$input.data('step')
       dayOfWeekStart: @$input.data('week-start-day')
     )
 
@@ -26,7 +26,7 @@ class DatePicker extends DateTimePicker
     @$input.datetimepicker(
       lang: @locale
       timepicker: false
-      step: @$input.data('step')
+      step: parseInt @$input.data('step')
       format: @$input.data('format')
       dayOfWeekStart: @$input.data('week-start-day')
     )
@@ -36,7 +36,7 @@ class TimePicker extends DateTimePicker
     @$input.datetimepicker(
       lang: @locale
       datepicker: false,
-      step: @$input.data('step')
+      step: parseInt @$input.data('step')
       format: @$input.data('format')
     )
 

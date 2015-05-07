@@ -8,8 +8,6 @@ class ExistingFileField
     @originalClass = @$removeButtonIcon.attr('class')
     @removedClass = @$removeButtonIcon.attr('data-removed-class')
 
-    console.log('foo', @$removeButton, @$removeInput)
-
     @$removeButton.on('click', $.proxy(@removeButtonClicked, this))
 
   removeButtonClicked: ->
