@@ -6,6 +6,7 @@
 #= require jasny-bootstrap
 #= require jquery.datetimepicker
 #= require bootstrap-slider
+#= require bootstrap-colorpicker
 #= require_self
 #= require_tree ./simple_form_extension
 
