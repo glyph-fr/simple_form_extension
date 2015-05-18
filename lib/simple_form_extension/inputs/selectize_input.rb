@@ -23,7 +23,8 @@ module SimpleFormExtension
           :'multi' => multi?,
           :'add-translation' => _translate('selectize.add'),
           :'collection' => collection,
-          :'max-items' => max_items
+          :'max-items' => max_items,
+          :'sort-field' => sort_field
         )
 
         @builder.hidden_field attribute_name, input_html_options
@@ -40,6 +41,10 @@ module SimpleFormExtension
 
       def max_items
         options[:max_items]
+      end
+
+      def sort_field
+        options[:sort_field] ||= 'text'
       end
 
       def collection
@@ -87,7 +92,7 @@ module SimpleFormExtension
         [options, input_html_options].each do |hash|
           return hash[key] if hash.key?(key)
         end
-  
+
         # Return default block value or nil if no block was given
         block ? block.call : nil
       end

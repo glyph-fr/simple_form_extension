@@ -3,7 +3,7 @@ class Selectize
   selectizeDefaults: ->
     mode: if @single then 'single' else 'multi'
     maxItems: if @single then 1 else @$el.data('max-items')
-    sortField: 'text'
+    sortField: @$el.data('sort-field')
     plugins: ['remove_button']
     create: @$el.data('creatable')
     render: @renderOptions()
