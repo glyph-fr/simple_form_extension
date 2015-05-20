@@ -114,10 +114,10 @@ module SimpleFormExtension
       end
 
       def foreign_key
-        @foreign_key ||= if reflection.macro == :has_many
-          reflection.foreign_key.pluralize
-        else
-          reflection.foreign_key
+        @foreign_key ||= case reflection.macro
+        when :belongs_to then reflection.foreign_key
+        when :has_one then :"#{ reflection.name }_id"
+        when :has_many then :"#{ reflection.name.to_s.singularize }_ids"
         end
       end
     end

@@ -1,5 +1,4 @@
 class Selectize
-
   selectizeDefaults: ->
     mode: if @single then 'single' else 'multi'
     maxItems: if @single then 1 else @$el.data('max-items')
@@ -15,9 +14,7 @@ class Selectize
 
     @$el.val('')
 
-    @$el.selectize(
-      $.extend @selectizeDefaults(), @options
-    )
+    @$el.selectize($.extend @selectizeDefaults(), @options)
 
     if (value = @$el.data('value'))
       @initializeValue(value)
