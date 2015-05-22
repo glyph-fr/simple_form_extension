@@ -1,20 +1,55 @@
-# SimpleFormExtension
+# Simple Form Extension
 
-TODO: Write a gem description
+This gems adds custom common input types to simple form.
+
+## Available inputs
+
+The following custom Simple Form inputs are available :
+
+* boolean
+* collection_check_boxes
+* collection_radio_buttons
+* color
+* date_time
+* file
+* image
+* numeric
+* redactor
+* selectize
+* slider
+
+Most of those inputs come with built-in javascript plugins, sometimes depending
+on external gems, others with the javascript plugin bundled in the gem's vendor
+directory.
+
+For more informations on javascript plugins usage, see the
+[Javascript plugins section](#javascript-plugins)
 
 ## Installation
 
 Add this line to your application's Gemfile:
 
-    gem 'simple_form_extension'
+```ruby
+gem 'simple_form_extension'
+```
 
 And then execute:
 
-    $ bundle
+```bash
+bundle
+```
 
 Or install it yourself as:
 
-    $ gem install simple_form_extension
+```bash
+gem install simple_form_extension
+```
+
+Use the install generator :
+
+```bash
+rails generate simple_form_extension:install
+```
 
 Add to your `application.css` :
 
@@ -35,22 +70,6 @@ To use the popover component, please include in a javascript file :
 ```javascript
 $('body').popover(selector: '[rel="popover"]')
 ```
-
-### Available inputs
-
-The following custom Simple Form inputs are available :
-
-* boolean
-* collection_check_boxes
-* collection_radio_buttons
-* color
-* date_time
-* file
-* image
-* numeric
-* redactor
-* selectize
-* slider
 
 ### Javascript Plugins
 
