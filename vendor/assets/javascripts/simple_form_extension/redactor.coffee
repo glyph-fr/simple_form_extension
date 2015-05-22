@@ -52,5 +52,5 @@ $.fn.simpleFormRedactor = ->
     instance = new Redactor($textarea)
     $textarea.data('simple-form:redactor', instance)
 
-onPageReady ->
-  $('[data-redactor]').simpleFormRedactor()
+$.simpleForm.onDomReady ($document) ->
+  $document.find('[data-redactor]').simpleFormRedactor()

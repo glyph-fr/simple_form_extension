@@ -12,5 +12,5 @@ $.fn.simpleFormSlider = ->
     instance = new Slider($select)
     $select.data('simple-form:slider', instance)
 
-onPageReady ->
-  $('[data-slider]').simpleFormSlider()
+$.simpleForm.onDomReady ($document) ->
+  $document.find('[data-slider]').simpleFormSlider()

@@ -9,5 +9,5 @@ $.fn.simpleFormColorpicker = ->
     instance = new ColorPicker($input)
     $input.data('simple-form:colorpicker', instance)
 
-onPageReady ->
-  $('[data-colorpicker]').simpleFormColorpicker()
+$.simpleForm.onDomReady ($document) ->
+  $document.find('[data-colorpicker]').simpleFormColorpicker()

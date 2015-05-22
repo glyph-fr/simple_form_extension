@@ -10,10 +10,30 @@
 #= require_self
 #= require_tree ./simple_form_extension
 
-$.fn.simpleForm = {}
+$.simpleForm =
+  # Bind a callback to run when a DOM or sub-DOM is ready to be initialized
+  # Allows abstracting the following cases :
+  #   - Document is ready with $(document).ready()
+  #   - Document is ready with Turbolinks $(document).on('page:change')
+  #   - A sub-DOM is dynamically added and needs all the plugins to be
+  #     initialized, ex: for nested forms
+  #
+  onDomReady: (callback) ->
+    $(document).on 'initialize.simpleform', (e, $fragment) ->
+      callback($fragment)
 
-window.onPageReady = (callback) ->
-  $(document).ready ->
-    callback() if window.Turbolinks is undefined
+# Trigger all the registered callbacks and run them on the target element
+$.fn.simpleForm = ->
+  @each (i, fragment) ->
+    $(document).trigger('initialize.simpleform', [$(fragment)])
 
-  $(document).on('page:change', callback);
+# Classic document ready binding
+# Does not run when Turbolinks is present and supported by the browser
+#
+$(document).ready ->
+  $('body').simpleForm() unless window.Turbolinks && window.Turbolinks.supported
+
+# Turbolinks document ready binding
+#
+$(document).on 'page:change', ->
+  $('body').simpleForm()

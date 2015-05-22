@@ -26,7 +26,11 @@ class ExistingFileField
     @$existingFile.show(0)
     @$removeButtonIcon.attr(class: @originalClass)
 
-onPageReady ->
+$.simpleForm.onDomReady ($document) ->
+  # Plugin initialization delegated to body, so we do not need to run the
+  # initialization process when the body has not changed
+  return unless $document.is('body')
+
   $('body').on 'click', '[data-dismiss="existing-file"]', (e) ->
     $button = $(e.currentTarget)
     $field = $button.closest('[data-provides="existing-file"]')

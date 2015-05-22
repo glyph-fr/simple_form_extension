@@ -40,8 +40,12 @@ class TimePicker extends DateTimePicker
       format: @$input.data('format')
     )
 
-# Lazy initialization of date and datetime pickers
-onPageReady ->
+
+$.simpleForm.onDomReady ($document) ->
+  # Plugin initialization delegated to body, so we do not need to run the
+  # initialization process when the body has not changed
+  return unless $document.is('body')
+
   $('body').on 'click', 'input.datetime', (e) ->
     DateTimePicker.forInput($(e.currentTarget), DateTimePicker).show()
 
@@ -55,11 +59,11 @@ onPageReady ->
   $('body').on 'click', '.date .datetimepicker-trigger', (e) ->
     $input = $(e.currentTarget).closest('.date').find('input.date')
     DatePicker.forInput($input, DatePicker).show()
-    
+
   $('body').on 'click', 'input.time', (e) ->
     TimePicker.forInput($(e.currentTarget), TimePicker).show()
 
   $('body').on 'click', '.time .datetimepicker-trigger', (e) ->
     $input = $(e.currentTarget).closest('.time').find('input.time')
     TimePicker.forInput($input, TimePicker).show()
-      
+

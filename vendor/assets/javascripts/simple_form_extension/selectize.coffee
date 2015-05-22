@@ -50,5 +50,5 @@ $.fn.simpleFormSelectize = (options = {}) ->
     instance = new Selectize($select, options)
     $select.data('simple-form:selectize', instance)
 
-onPageReady ->
-  $('[data-selectize]').simpleFormSelectize()
+$.simpleForm.onDomReady ($document) ->
+  $document.find('[data-selectize]').simpleFormSelectize()
