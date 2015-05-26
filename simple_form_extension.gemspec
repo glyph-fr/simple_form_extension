@@ -7,10 +7,10 @@ require 'simple_form_extension/version'
 Gem::Specification.new do |spec|
   spec.name          = 'simple_form_extension'
   spec.version       = SimpleFormExtension::VERSION
-  spec.authors       = ['Alexandre Vasseur']
-  spec.email         = ['alex@glyph.fr']
-  spec.summary       = %q{A simple extention for simple_form with, colorpiker, icon, fileupload, image upload}
-  spec.description   = %q{A simple extention for simple_form with, colorpiker, icon, fileupload, image upload}
+  spec.authors       = ['Glyph-fr']
+  spec.email         = ['contact@glyph.fr']
+  spec.summary       = %q{This gems adds custom common input types to simple form.}
+  spec.description   = %q{The following custom Simple Form inputs are available : boolean, collection_check_boxes, collection_radio_buttons, color, date_time, file, image, numeric, redactor, selectize and slider}
   spec.homepage      = 'http://www.glyph.fr'
   spec.license       = 'MIT'
 
@@ -28,3 +28,5 @@ Gem::Specification.new do |spec|
   spec.add_development_dependency 'bundler', '~> 1.5'
   spec.add_development_dependency 'rake'
 end
+
+
