@@ -89,11 +89,11 @@ You need to explicitly call them in your forms with the `:as` parameter.
 
 This inputs are the following :
 
-* image
-* selectize
-* slider
-* redactor
-* color
+* [image](#image)
+* [selectize](#selectize)
+* [slider](#slider)
+* [redactor](#redactor)
+* [color](#color)
 
 ### New Inputs usage
 
@@ -200,8 +200,13 @@ To use it, just call it as usual :
 
 #### :color
 
-Does not work for now, currently fixing ...
+The color input allows to add a colorpicker to a string field.
 
+**NOTE** : Does not work for now, currently fixing ...
+
+```ruby
+= form.input :background_color, as: :color
+```
 
 <!-- To use the popover component, please include in a javascript file :
 
