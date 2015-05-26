@@ -1,6 +1,9 @@
 class ColorPicker
   constructor: (@$el) ->
-    @$el.colorpicker()
+    if ($parent = @$el.closest('[data-colorpicker-wrapper]')).length
+      $parent.colorpicker()
+    else
+      @$el.colorpicker()
 
 $.fn.simpleFormColorpicker = ->
   @each (i, el) ->
