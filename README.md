@@ -164,6 +164,8 @@ selectize to sort your collection.
 = form.input :items, as: :selectize, collection: Item.all.map { |item| { text: item.name, value: item.id, position: item.position } }, :'sort-field' => :position, multi: false, creatable: true
 ```
 
+Used javascript plugin : [Selectize](https://brianreavis.github.io/selectize.js/)
+
 #### :slider
 
 To use the slide component, you'll always want to set the `:min` and `:max`
@@ -188,6 +190,8 @@ Options are the following :
                      range: true, ticks: [0, 5, 10]
 ```
 
+Used javascript plugin : [Bootstrap Slider](https://github.com/seiyria/bootstrap-slider)
+
 #### :redactor
 
 There are not options for now on this redactor input.
@@ -198,15 +202,23 @@ To use it, just call it as usual :
 = form.input :content, as: :redactor
 ```
 
+Used javascript plugin : [Redactor](https://github.com/glyph-fr/redactor-rails)
+
 #### :color
 
 The color input allows to add a colorpicker to a string field.
 
-**NOTE** : Does not work for now, currently fixing ...
-
 ```ruby
 = form.input :background_color, as: :color
 ```
+
+Options :
+
+* format
+* align
+
+
+Used javascript plugin : [Bootstrap Color Picker](http://mjolnic.com/bootstrap-colorpicker/)
 
 <!-- To use the popover component, please include in a javascript file :
 
