@@ -110,7 +110,9 @@ module SimpleFormExtension
       end
 
       def reflection
-        @reflection ||= object.class.reflect_on_association(attribute_name)
+        @reflection ||= if object.class.respond_to?(:reflect_on_association)
+          object.class.reflect_on_association(attribute_name)
+        end
       end
 
       def foreign_key
