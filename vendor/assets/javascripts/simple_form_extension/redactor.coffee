@@ -31,6 +31,7 @@ class Redactor
         "table"
         "fontcolor"
         "fontsize"
+        "fontfamily"
         "scriptbuttons"
       ]
       path: "/assets/redactor-rails"
