@@ -54,6 +54,8 @@ module SimpleFormExtension
           else
             (object.send(collection) || []).map(&method(:serialize_option))
           end
+        elsif relation?
+          reflection.klass.all.map(&method(:serialize_option))
         else
           []
         end
