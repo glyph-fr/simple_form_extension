@@ -1,13 +1,20 @@
 class Redactor
+  DEFAULT_OPTIONS: {
+    min_height: 250
+  }
+
   constructor: (@$el) ->
     params = @params()
+    config = $.extend({}, @DEFAULT_OPTIONS, @$el.data('redactor-config'))
+
+    console.log('REDACTOR CONFIG : ', config, ' //// ', @DEFAULT_OPTIONS)
 
     @$el.redactor
       buttons: ['html', 'formatting',  'bold', 'italic', 'underline', 'deleted',
         'unorderedlist', 'orderedlist', 'outdent', 'indent',
         'image', 'file','link', 'alignment', 'horizontalrule']
       removeEmpty: ['strong', 'em', 'span', 'p', 'h1', 'h2', 'h3', 'h4', 'div']
-      minHeight: 400
+      minHeight: config.min_height
       buttonSource: true
       replaceDivs: false
       linebreaks: false
