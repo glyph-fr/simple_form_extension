@@ -1,0 +1,26 @@
+it:
+  simple_form:
+    extension:
+      file:
+        select: "Scegli file"
+        change: "Cambia file"
+        existing_file: "File esistente"
+      image:
+        select: "Scegli immagine"
+        change: "Cambia immagini"
+      date:
+        format:
+          js: 'm/d/Y'
+          rails: '%m/%d/%Y'
+      time:
+        format:
+          js: 'H:i'
+          rails: '%H:%M'    
+      datetime:
+        format:
+          js: 'd/m/Y H:i'
+          rails: '%d/%m/%Y %H:%M'
+      shared:
+        week_start_day: 1
+      selectize:
+        add: "Aggiungi"
