@@ -28,7 +28,7 @@
     this.$element.on( 'keydown.fu.spinbox', this.$input, $.proxy( this.keydown, this ) );
     this.$element.on( 'keyup.fu.spinbox', this.$input, $.proxy( this.keyup, this ) );
 
-    this.bindMousewheelListeners();
+    // this.bindMousewheelListeners();
     this.mousewheelTimeout = {};
 
     if ( this.options.hold ) {
