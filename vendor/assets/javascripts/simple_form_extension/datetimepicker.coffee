@@ -7,12 +7,12 @@ class DateTimePicker
 
   constructor: (@$input) ->
     @locale = $('html').attr('lang') || 'en'
+    $.datetimepicker.setLocale(@local)
     @$input.data('simple-form-extension-datetimepicker', this)
     @initializePicker()
 
   initializePicker: ->
     @$input.datetimepicker(
-      lang: @locale
       format: @$input.data('format')
       step: parseInt @$input.data('step')
       dayOfWeekStart: @$input.data('week-start-day')
@@ -24,7 +24,6 @@ class DateTimePicker
 class DatePicker extends DateTimePicker
   initializePicker: ->
     @$input.datetimepicker(
-      lang: @locale
       timepicker: false
       step: parseInt @$input.data('step')
       format: @$input.data('format')
@@ -34,7 +33,6 @@ class DatePicker extends DateTimePicker
 class TimePicker extends DateTimePicker
   initializePicker: ->
     @$input.datetimepicker(
-      lang: @locale
       datepicker: false,
       step: parseInt @$input.data('step')
       format: @$input.data('format')
