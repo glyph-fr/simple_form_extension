@@ -11,7 +11,7 @@ module SimpleFormExtension
         input_html_options[:data] ||= {}
         input_html_options[:data].merge!(type_specific_option)
 
-        if (value = object.send(attribute_name)) && !input_html_options.key?(:value)
+        if (value = object.send(attribute_name).presence) && !input_html_options.key?(:value)
           format = _translate("#{ input_type }.format.rails")
           input_html_options[:value] = I18n.l(value, format: format)
         end
@@ -32,7 +32,7 @@ module SimpleFormExtension
       def type_specific_option
         options = { format: _translate("#{ input_type }.format.js") }
 
-        unless input_type == :time 
+        unless input_type == :time
           options[:'week-start-day'] = _translate('shared.week_start_day')
         end
 
