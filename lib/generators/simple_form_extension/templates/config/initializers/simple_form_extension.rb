@@ -54,5 +54,9 @@ SimpleForm.setup do |config|
       ba.use :hint,  wrap_with: { tag: 'p', class: 'help-block' }
     end
   end
-  
+  config.wrapper_mappings = {
+    datetime: :vertical_form,
+    date: :vertical_form,
+    time: :vertical_form
+  }  
 end
