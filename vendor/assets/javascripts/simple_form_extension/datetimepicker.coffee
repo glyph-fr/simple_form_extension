@@ -13,10 +13,14 @@ class DateTimePicker
 
   initializePicker: ->
     @$input.datetimepicker(
+      lang: @locale
       format: @$input.data('format')
       step: parseInt(@$input.data('step'), 10)
-      dayOfWeekStart: @$input.data('week-start-day')
       defaultTime: @$input.data('default-time')
+      dayOfWeekStart: @$input.data('week-start-day')
+      disabledDates: @$input.data('disabled-dates')
+      minDate: @$input.data('min-date')
+      maxDate: @$input.data('max-date')
     )
 
   show: ->
@@ -25,10 +29,14 @@ class DateTimePicker
 class DatePicker extends DateTimePicker
   initializePicker: ->
     @$input.datetimepicker(
+      lang: @locale
       timepicker: false
       step: parseInt @$input.data('step')
       format: @$input.data('format')
       dayOfWeekStart: @$input.data('week-start-day')
+      disabledDates: @$input.data('disabled-dates')
+      minDate: @$input.data('min-date')
+      maxDate: @$input.data('max-date')
     )
 
 class TimePicker extends DateTimePicker
