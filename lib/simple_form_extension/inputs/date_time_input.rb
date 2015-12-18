@@ -34,6 +34,7 @@ module SimpleFormExtension
 
         unless input_type == :time
           options[:'week-start-day'] = _translate('shared.week_start_day')
+          options[:'format-date'] = _translate('date.format.js')
         end
 
         options
