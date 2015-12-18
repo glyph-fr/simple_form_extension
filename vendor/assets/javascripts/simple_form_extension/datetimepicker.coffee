@@ -1,4 +1,4 @@
-class DateTimePicker
+class DateTimePickerBase
   @forInput = ($input, type) ->
     if (picker = $input.data('simple-form-extension-datetimepicker'))
       picker
@@ -12,41 +12,47 @@ class DateTimePicker
     @initializePicker()
 
   initializePicker: ->
-    @$input.datetimepicker(
-      lang: @locale
-      format: @$input.data('format')
-      step: parseInt(@$input.data('step'), 10)
-      defaultTime: @$input.data('default-time')
-      dayOfWeekStart: @$input.data('week-start-day')
-      disabledDates: @$input.data('disabled-dates')
-      minDate: @$input.data('min-date')
-      maxDate: @$input.data('max-date')
-    )
+    @$input.datetimepicker(@processOptions())
+
+  processOptions: ->
+    $.extend({}, @defaultOptions(), @options())
+
+  options: ->
+    {}
+
+  defaultOptions: ->
+    lang: @locale
+    format: @$input.data('format')
+    step: parseInt(@$input.data('step'), 10)
 
   show: ->
     @$input.datetimepicker('show')
 
-class DatePicker extends DateTimePicker
-  initializePicker: ->
-    @$input.datetimepicker(
-      lang: @locale
-      timepicker: false
-      step: parseInt @$input.data('step')
-      format: @$input.data('format')
-      dayOfWeekStart: @$input.data('week-start-day')
-      disabledDates: @$input.data('disabled-dates')
-      minDate: @$input.data('min-date')
-      maxDate: @$input.data('max-date')
-    )
 
-class TimePicker extends DateTimePicker
-  initializePicker: ->
-    @$input.datetimepicker(
-      datepicker: false,
-      step: parseInt @$input.data('step')
-      format: @$input.data('format')
-      defaultTime: @$input.data('default-time')
-    )
+class DateTimePicker extends DateTimePickerBase
+  options: ->
+    formatDate: @$input.data('format-date')
+    defaultTime: @$input.data('default-time')
+    dayOfWeekStart: @$input.data('week-start-day')
+    disabledDates: @$input.data('disabled-dates') || []
+    minDate: @$input.data('min-date')
+    maxDate: @$input.data('max-date')
+
+
+class DatePicker extends DateTimePickerBase
+  options: ->
+    timepicker: false
+    formatDate: @$input.data('format-date')
+    dayOfWeekStart: @$input.data('week-start-day')
+    disabledDates: @$input.data('disabled-dates') || []
+    minDate: @$input.data('min-date')
+    maxDate: @$input.data('max-date')
+
+
+class TimePicker extends DateTimePickerBase
+  options: ->
+    datepicker: false,
+    defaultTime: @$input.data('default-time')
 
 
 $.simpleForm.onDomReady ($document) ->
