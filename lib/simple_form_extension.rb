@@ -2,7 +2,6 @@ require 'simple_form_extension/version'
 require 'redactor-rails'
 require 'selectize-rails'
 require 'simple_form'
-require 'compass-rails'
 
 module SimpleFormExtension
   extend ActiveSupport::Autoload
