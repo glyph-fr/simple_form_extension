@@ -24,10 +24,20 @@ module SimpleFormExtension
           :'add-translation' => _translate('selectize.add'),
           :'collection' => collection,
           :'max-items' => max_items,
-          :'sort-field' => sort_field
+          :'sort-field' => sort_field,
+          :'search-url' => search_url,
+          :'search-param' => search_param
         )
 
         @builder.hidden_field attribute_name, input_html_options
+      end
+
+      def search_param
+        options[:search_param] ||= 'name'
+      end
+
+      def search_url
+        options[:search_url]
       end
 
       def creatable?
@@ -48,6 +58,8 @@ module SimpleFormExtension
       end
 
       def collection
+        return if search_url
+        
         if (collection = options[:collection])
           if enumerable?(collection)
             collection.map(&method(:serialize_option))

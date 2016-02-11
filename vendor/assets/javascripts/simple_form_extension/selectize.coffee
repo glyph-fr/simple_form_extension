@@ -7,6 +7,7 @@ class Selectize
     create: @$el.data('creatable')
     render: @renderOptions()
     options: @$el.data('collection')
+    load: @load
 
   constructor: (@$el, @options) ->
     @single = @$el.data('multi') is false
@@ -33,6 +34,20 @@ class Selectize
   addAndSelect: (data) ->
     @el.selectize.addOption(data)
     @el.selectize.addItem(data.value)
+
+  searchURL: ->
+    @$el.data('search-url')
+
+  load: (query, callback) =>
+    callback() unless query.length
+    $.ajax
+      url: @searchURL()
+      type: 'GET'
+      data: 
+        q: query
+      error: -> callback()
+      success: (res) ->
+        callback(res)
 
   renderOptions: ->
     option_create: (data) =>
