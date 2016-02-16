@@ -39,7 +39,7 @@ class Selectize
     @$el.data('search-url')
 
   load: (query, callback) =>
-    callback() unless query.length
+    return callback() unless query.length && @searchURL()
     $.ajax
       url: @searchURL()
       type: 'GET'
