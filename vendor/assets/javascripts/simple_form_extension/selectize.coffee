@@ -12,8 +12,11 @@ class Selectize
   constructor: (@$el, @options) ->
     @single = @$el.data('multi') is false
     @el = @$el[0]
-
     @$el.val('')
+
+    @searchURL = @$el.data('search-url')
+    @searchParam = @$el.data('search-param')
+    @escape = @$el.data('escape') isnt false
 
     @$el.selectize($.extend @selectizeDefaults(), @options)
 
@@ -35,21 +38,34 @@ class Selectize
     @el.selectize.addOption(data)
     @el.selectize.addItem(data.value)
 
-  searchURL: ->
-    @$el.data('search-url')
-
   load: (query, callback) =>
-    return callback() unless query.length && @searchURL()
+    return callback() unless query.length && @searchURL
+
+    data = {}
+    data[@searchParam] = query
+
     $.ajax
-      url: @searchURL()
+      url: @searchURL
       type: 'GET'
-      data: 
-        q: query
+      data: data
       error: -> callback()
-      success: (res) ->
-        callback(res)
+      success: callback
 
   renderOptions: ->
+    option: (data, escape) =>
+      """
+        <div data-value="#{ escape(data.value) }" class="item">
+          #{ if @escape then escape(data.text) else data.text }
+        </div>
+      """
+
+    item: (data, escape) =>
+      """
+        <div data-value="#{ escape(data.value) }" data-selectable="" class="option">
+          #{ if @escape then escape(data.text) else data.text }
+        </div>
+      """
+
     option_create: (data) =>
       """
         <div class="create" data-selectable="">

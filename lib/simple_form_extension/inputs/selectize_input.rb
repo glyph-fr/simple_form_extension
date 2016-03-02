@@ -17,23 +17,24 @@ module SimpleFormExtension
         input_html_options[:data] ||= {}
 
         input_html_options[:data].merge!(
-          :'selectize' => true,
-          :'value' => serialized_value,
-          :'creatable' => creatable?,
-          :'multi' => multi?,
+          :'selectize'       => true,
+          :'value'           => serialized_value,
+          :'creatable'       => creatable?,
+          :'multi'           => multi?,
           :'add-translation' => _translate('selectize.add'),
-          :'collection' => collection,
-          :'max-items' => max_items,
-          :'sort-field' => sort_field,
-          :'search-url' => search_url,
-          :'search-param' => search_param
+          :'collection'      => collection,
+          :'max-items'       => max_items,
+          :'sort-field'      => sort_field,
+          :'search-url'      => search_url,
+          :'search-param'    => search_param,
+          :'escape'          => escape
         )
 
         @builder.hidden_field attribute_name, input_html_options
       end
 
       def search_param
-        options[:search_param] ||= 'name'
+        options[:search_param] ||= 'q'
       end
 
       def search_url
@@ -42,6 +43,10 @@ module SimpleFormExtension
 
       def creatable?
         !!options[:creatable]
+      end
+
+      def escape
+        options[:escape]
       end
 
       def multi?
@@ -59,7 +64,7 @@ module SimpleFormExtension
 
       def collection
         return if search_url
-        
+
         if (collection = options[:collection])
           if enumerable?(collection)
             collection.map(&method(:serialize_option))
@@ -74,17 +79,35 @@ module SimpleFormExtension
       end
 
       def serialized_value
+        return input_html_options[:data][:value] if input_html_options[:data][:value]
+
         if multi?
-          value.map do |item|
-            { text: item, value: item }
+          if relation?
+            value.map do |item|
+              if (resource = relation.find { |resource| resource.id == item.to_i }) && (text = text_from(resource))
+                serialize_value(item, text)
+              else
+                serialize_value(item)
+              end
+            end
+          else
+            value.map(&method(:serialize_value))
           end
         else
-          value && { text: value, value: value }
+          if relation? && relation && (text = text_from(relation))
+            serialize_value(value, text)
+          else
+            serialize_value(value)
+          end
         end
       end
 
       def value
         @value ||= options_fetch(:value) { object.send(attribute_name) }
+      end
+
+      def serialize_value(value, text = nil)
+        { text: (text || value), value: value }
       end
 
       private
@@ -119,6 +142,10 @@ module SimpleFormExtension
         option.try(:name) || options.try(:title) || option.to_s
       end
 
+      def relation
+        @relation ||= object.send(reflection.name) if relation?
+      end
+
       def relation?
         !!reflection
       end
@@ -135,6 +162,10 @@ module SimpleFormExtension
         when :has_one then :"#{ reflection.name }_id"
         when :has_many then :"#{ reflection.name.to_s.singularize }_ids"
         end
+      end
+
+      def text_from(resource)
+        resource.try(:title) || resource.try(:name)
       end
     end
   end
