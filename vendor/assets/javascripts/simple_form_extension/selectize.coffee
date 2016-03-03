@@ -83,3 +83,25 @@ $.fn.simpleFormSelectize = (options = {}) ->
 
 $.simpleForm.onDomReady ($document) ->
   $document.find('[data-selectize]').simpleFormSelectize()
+
+
+# Fix for allowEmptyOption issue
+#
+# See : https://github.com/selectize/selectize.js/issues/967
+#
+hash_key = (value) ->
+  if typeof value == 'undefined' or value == null
+    return null
+  if typeof value == 'boolean'
+    return if value then '1' else '0'
+  value + ''
+
+$.extend window.Selectize.prototype, registerOption: (data) ->
+  key = hash_key(data[@settings.valueField])
+  # Line 1187 of src/selectize.js should be changed
+  # if (!key || this.options.hasOwnProperty(key)) return false;
+  if typeof key == 'undefined' or key == null or @options.hasOwnProperty(key)
+    return false
+  data.$order = data.$order or ++@order
+  @options[key] = data
+  key
