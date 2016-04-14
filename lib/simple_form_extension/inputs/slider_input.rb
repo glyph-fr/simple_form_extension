@@ -13,6 +13,8 @@ module SimpleFormExtension
           end
         end
 
+        input_html_options[:data][:'slider-value'] ||= object.send(attribute_name)
+
         if options[:disabled]
           input_html_options[:data][:'slider-enabled'] = false
         end
