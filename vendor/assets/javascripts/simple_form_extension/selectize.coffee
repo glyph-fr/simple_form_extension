@@ -66,11 +66,11 @@ class Selectize
         </div>
       """
 
-    option_create: (data) =>
+    option_create: (data, escape) =>
       """
         <div class="create" data-selectable="">
           #{ @$el.data('add-translation') }
-          <strong>#{ data.input }</strong> ...
+          <strong>#{ escape(data.input) }</strong> ...
         </div>
       """
 
