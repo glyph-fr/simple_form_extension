@@ -139,7 +139,7 @@ module SimpleFormExtension
       end
 
       def name_for(option)
-        option.try(:name) || options.try(:title) || option.to_s
+        option.try(:name) || option.try(:title) || option.to_s
       end
 
       def relation
