@@ -17,6 +17,7 @@ module SimpleFormExtension
               </span>
             </span>
           </div> ".html_safe
+
         else
           @builder.number_field(attribute_name, input_html_options)
         end
