@@ -38,11 +38,11 @@ SimpleForm.setup do |config|
     b.use :error, wrap_with: { tag: 'span', class: 'help-block' }
     b.use :hint,  wrap_with: { tag: 'p', class: 'help-block' }
   end
-  
+
   config.wrappers :label_popover, tag: 'div', class: 'form-group', error_class: 'has-error' do |b|
     b.use :html5
     b.use :placeholder
-  
+
     b.wrapper tag: 'div', class: 'label-wrapper' do |label|
       label.use :label, class: 'control-label'
       label.use :popover
@@ -54,9 +54,15 @@ SimpleForm.setup do |config|
       ba.use :hint,  wrap_with: { tag: 'p', class: 'help-block' }
     end
   end
-  config.wrapper_mappings = {
-    datetime: :vertical_form,
-    date: :vertical_form,
-    time: :vertical_form
-  }  
+
+  # Add default wrapper for date inputs if the simple_form_bootstrap initializer
+  # has been generated
+  #
+  if config.wrappers.keys.include?('vertical_form')
+    config.wrapper_mappings = {
+      datetime: :vertical_form,
+      date: :vertical_form,
+      time: :vertical_form
+    }
+  end
 end
