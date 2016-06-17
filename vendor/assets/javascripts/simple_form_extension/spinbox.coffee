@@ -1,6 +1,9 @@
 class Spinbox
   constructor: (@$el) ->
-    @$el.spinbox(max: Number.POSITIVE_INFINITY)
+    options = @$el.find('input').data('spinner')
+    defaults = 
+      max: Number.POSITIVE_INFINITY
+    @$el.spinbox($.extend(defaults, options))
 
 
 $.fn.simpleFormSpinbox = ->
