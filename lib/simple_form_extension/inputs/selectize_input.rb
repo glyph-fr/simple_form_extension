@@ -14,6 +14,8 @@ module SimpleFormExtension
       #
       def input(wrapper_options = {})
         @attribute_name = foreign_key if relation?
+        set_sort_field!
+
         input_html_options[:data] ||= {}
 
         input_html_options[:data].merge!(
@@ -58,6 +60,14 @@ module SimpleFormExtension
         options[:max_items]
       end
 
+      def set_sort_field!
+        options[:sort_field] = if enum?
+          'position'
+        else
+          'text'
+        end
+      end
+
       def sort_field
         options[:sort_field] ||= 'text'
       end
@@ -73,6 +83,8 @@ module SimpleFormExtension
           end
         elsif relation?
           reflection.klass.all.map(&method(:serialize_option))
+        elsif enum?
+          enum_options
         else
           []
         end
@@ -153,6 +165,19 @@ module SimpleFormExtension
       def reflection
         @reflection ||= if object.class.respond_to?(:reflect_on_association)
           object.class.reflect_on_association(attribute_name)
+        end
+      end
+
+      def enum?
+        @is_enum ||= object.class.defined_enums.key?(attribute_name.to_s)
+      end
+
+      def enum_options
+        object.class.defined_enums[attribute_name.to_s].map do |key, value|
+          path = [object.model_name.i18n_key, attribute_name, key].join('.')
+          translation = ::I18n.t("activerecord.enums.#{ path }", default: '')
+
+          { text: translation.presence || key, value: key, position: value }
         end
       end
 

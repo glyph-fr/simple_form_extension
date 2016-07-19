@@ -166,6 +166,18 @@ selectize to sort your collection.
 
 Used javascript plugin : [Selectize](https://brianreavis.github.io/selectize.js/)
 
+##### Selectize on enums
+
+You can use a selectize input field on
+[enums](http://edgeapi.rubyonrails.org/classes/ActiveRecord/Enum.html).
+
+The different options of the enum will be displayed.
+You can translate those options by defining the following translation key :
+`activerecord.enums.<model_name>.<attribute_name>.<option_name>`.
+
+For example, if we have a `User` model with an `invitation` enum and the
+`accepted` state, we'll have to translate : `activerecord.enums.user.invitation.accepted`.
+
 #### :slider
 
 To use the slide component, you'll always want to set the `:min` and `:max`
