@@ -14,7 +14,7 @@ $.simpleForm =
   # Bind a callback to run when a DOM or sub-DOM is ready to be initialized
   # Allows abstracting the following cases :
   #   - Document is ready with $(document).ready()
-  #   - Document is ready with Turbolinks $(document).on('page:change')
+  #   - Document is ready with Turbolinks 'page:change' or 'turbolinks:load'
   #   - A sub-DOM is dynamically added and needs all the plugins to be
   #     initialized, ex: for nested forms
   #
@@ -33,7 +33,9 @@ $.fn.simpleForm = ->
 $(document).ready ->
   $('body').simpleForm() unless window.Turbolinks && window.Turbolinks.supported
 
-# Turbolinks document ready binding
+# Turbolinks document ready binding with compatibility for turbolinks-classic
+# and rails 5 turbolinks events
 #
-$(document).on 'page:change', ->
+$(document).on 'page:change turbolinks:load', ->
+  console.log 'turbolinks:load'
   $('body').simpleForm()
