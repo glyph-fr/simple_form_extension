@@ -7,8 +7,6 @@ class Redactor
     params = @params()
     config = $.extend({}, @DEFAULT_OPTIONS, @$el.data('redactor-config'))
 
-    console.log('REDACTOR CONFIG : ', config, ' //// ', @DEFAULT_OPTIONS)
-
     @$el.redactor
       buttons: ['html', 'formatting',  'bold', 'italic', 'underline', 'deleted',
         'unorderedlist', 'orderedlist', 'outdent', 'indent',

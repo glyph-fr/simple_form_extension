@@ -37,5 +37,4 @@ $(document).ready ->
 # and rails 5 turbolinks events
 #
 $(document).on 'page:change turbolinks:load', ->
-  console.log 'turbolinks:load'
   $('body').simpleForm()
