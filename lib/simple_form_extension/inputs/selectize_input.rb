@@ -14,7 +14,6 @@ module SimpleFormExtension
       #
       def input(wrapper_options = {})
         @attribute_name = foreign_key if relation?
-        set_sort_field!
 
         input_html_options[:data] ||= {}
 
@@ -60,16 +59,14 @@ module SimpleFormExtension
         options[:max_items]
       end
 
-      def set_sort_field!
-        options[:sort_field] = if enum?
+      def sort_field
+        if (sort_field = options[:sort_field]).present?
+          sort_field
+        elsif enum?
           'position'
         else
           'text'
         end
-      end
-
-      def sort_field
-        options[:sort_field] ||= 'text'
       end
 
       def collection
@@ -146,8 +143,11 @@ module SimpleFormExtension
         block ? block.call : nil
       end
 
-      def enumerable?(object)
-        object.class.include?(Enumerable) || ActiveRecord::Relation === object
+      # Check if the given target object is enumerable. Used internally to
+      # check wether :collection or :value arguments are collections.
+      #
+      def enumerable?(target)
+        target.class.include?(Enumerable) || ActiveRecord::Relation === target
       end
 
       def name_for(option)
@@ -163,17 +163,17 @@ module SimpleFormExtension
       end
 
       def reflection
-        @reflection ||= if object.class.respond_to?(:reflect_on_association)
-          object.class.reflect_on_association(attribute_name)
+        @reflection ||= if object_class.respond_to?(:reflect_on_association)
+          object_class.reflect_on_association(attribute_name)
         end
       end
 
       def enum?
-        @is_enum ||= object.class.defined_enums.key?(attribute_name.to_s)
+        object_class.defined_enums.key?(attribute_name.to_s)
       end
 
       def enum_options
-        object.class.defined_enums[attribute_name.to_s].map do |key, value|
+        object_class.defined_enums[attribute_name.to_s].map do |key, value|
           path = [object.model_name.i18n_key, attribute_name, key].join('.')
           translation = ::I18n.t("activerecord.enums.#{ path }", default: '')
 
@@ -191,6 +191,19 @@ module SimpleFormExtension
 
       def text_from(resource)
         resource.try(:title) || resource.try(:name)
+      end
+
+      # Retrieve actual model class even when the form object is a proxy like
+      # for Ransack::Search or ActiveRecord::Relation classes
+      #
+      def object_class
+        @object_class ||= if ((object_class = object.class) < ActiveRecord::Base)
+          object_class
+        elsif (klass = object.try(:klass))
+          klass
+        else
+          object_class
+        end
       end
     end
   end
