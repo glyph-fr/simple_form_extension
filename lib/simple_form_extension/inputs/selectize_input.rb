@@ -2,6 +2,7 @@ module SimpleFormExtension
   module Inputs
     class SelectizeInput < SimpleForm::Inputs::Base
       include SimpleFormExtension::Translations
+      include SimpleFormExtension::ResourceNameHelper
 
       # This field only allows local select options (serialized into JSON)
       # Searching for remote ones will be implemented later.
@@ -151,7 +152,7 @@ module SimpleFormExtension
       end
 
       def name_for(option)
-        option.try(:name) || option.try(:title) || option.to_s
+        resource_name_for(option) || option.to_s
       end
 
       def relation
@@ -190,7 +191,7 @@ module SimpleFormExtension
       end
 
       def text_from(resource)
-        resource.try(:title) || resource.try(:name)
+        resource_name_for(resource)
       end
 
       # Retrieve actual model class even when the form object is a proxy like
