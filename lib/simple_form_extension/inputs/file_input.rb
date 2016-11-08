@@ -27,7 +27,7 @@ module SimpleFormExtension
                @builder.file_field(attribute_name, input_html_options)
              end +
 
-            content_tag(:button, class: 'btn btn-danger fileinput-exists', type: 'button', data: { dismiss: 'fileinput' }) do
+            content_tag(:button, class: 'btn btn-default fileinput-exists', type: 'button', data: { dismiss: 'fileinput' }) do
               content_tag(:i, '', class: 'fa fa-times')
             end
           end
@@ -61,7 +61,7 @@ module SimpleFormExtension
       def remove_file_button
         return unless object.respond_to?(:"#{ remove_attachment_method }=")
 
-        content_tag(:button, class: 'btn btn-danger', type: 'button', data: { dismiss: 'existing-file' }) do
+        content_tag(:button, class: 'btn btn-default', type: 'button', data: { dismiss: 'existing-file' }) do
           content_tag(:i, '', class: 'fa fa-remove', data: { :'removed-class' => 'fa fa-refresh' }) +
           @builder.hidden_field(remove_attachment_method, class: 'remove-file-input', value: nil)
         end
