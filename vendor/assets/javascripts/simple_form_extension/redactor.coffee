@@ -8,11 +8,11 @@ class Redactor
       'unorderedlist', 'orderedlist', 'outdent', 'indent',
       'image', 'file','link', 'alignment', 'horizontalrule']
     removeEmpty: ['strong', 'em', 'span', 'p', 'h1', 'h2', 'h3', 'h4', 'div']
-    min_height: 250
+    minHeight: 250
     buttonSource: true
     replaceDivs: false
-    linebreaks: false
     toolbarFixed: false
+    cleanStyleOnEnter: true
     formattingAdd: [
       {
         tag: 'img'
