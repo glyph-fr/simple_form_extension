@@ -23,7 +23,7 @@ module SimpleFormExtension
           input_html_options[:data][:ticks] = options[:ticks].to_json
         end
 
-        @builder.number_field(attribute_name, input_html_options)
+        @builder.hidden_field(attribute_name, input_html_options)
       end
     end
   end
