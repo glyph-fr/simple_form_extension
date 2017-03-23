@@ -5,7 +5,7 @@ module SimpleFormExtension
         input_html_options[:class] << 'form-control'
 
         input_html_options[:data] ||= {}
-        input_html_options[:data][:slider] = true
+        input_html_options[:data][:'simple-form-slider'] = true
 
         [:min, :max, :step, :orientation, :range, :value].each do |key|
           if options.key?(key)
