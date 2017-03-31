@@ -1,6 +1,6 @@
 class Slider
   constructor: (@$el) ->
-    value = if (values = @$el.data('slider-value')?.split(','))
+    value = if (values = @$el.data('slider-value')?.toString().split(','))
       if values.length <= 1
         value[0]
       else
