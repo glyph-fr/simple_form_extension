@@ -3,6 +3,7 @@ module SimpleFormExtension
     extend ActiveSupport::Autoload
 
     autoload :DateTimeInput
+    autoload :PeriodPickerInput
     autoload :BooleanInput
     autoload :NumericInput
     autoload :CollectionCheckBoxesInput
