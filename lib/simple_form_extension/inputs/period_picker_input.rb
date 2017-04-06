@@ -37,6 +37,8 @@ module SimpleFormExtension
           options[:'title'] = false
           options[:'without-bottom-panel'] = true
           options[:'cells'] = [1, 1]
+          options[:'close-button'] = false
+          options[:'fullsize-button'] = false
         end
 
         options

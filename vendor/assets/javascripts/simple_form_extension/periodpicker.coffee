@@ -36,16 +36,17 @@ class PeriodPickerBase
 class DateTimePicker extends PeriodPickerBase
   options: ->
     end: @$enDateField
-    formatDate: @$input.data('format-date')
-    defaultTime: @$input.data('default-time')
+    # defaultTime: @$input.data('default-time')
     dayOfWeekStart: @$input.data('week-start-day')
-    disabledDates: @$input.data('disabled-dates') || []
-    minDate: @$input.data('min-date')
-    maxDate: @$input.data('max-date')
+    # formatDate: @$input.data('format-date')
+    # minDate: @$input.data('min-date')
+    # maxDate: @$input.data('max-date')
     yearsLine: @$input.data('years-line')
     title: @$input.data('title')
     withoutBottomPanel: @$input.data('without-bottom-panel')
     cells: @$input.data('cells')
+    closeButton: false
+    fullsizeButton: false
 
 
 # class DatePicker extends PeriodPickerBase
