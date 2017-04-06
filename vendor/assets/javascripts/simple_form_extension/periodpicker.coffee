@@ -36,28 +36,32 @@ class PeriodPickerBase
 class DateTimePicker extends PeriodPickerBase
   options: ->
     end: @$enDateField
-    # formatDate: @$input.data('format-date')
-    # defaultTime: @$input.data('default-time')
-    # dayOfWeekStart: @$input.data('week-start-day')
-    # disabledDates: @$input.data('disabled-dates') || []
-    # minDate: @$input.data('min-date')
-    # maxDate: @$input.data('max-date')
+    formatDate: @$input.data('format-date')
+    defaultTime: @$input.data('default-time')
+    dayOfWeekStart: @$input.data('week-start-day')
+    disabledDates: @$input.data('disabled-dates') || []
+    minDate: @$input.data('min-date')
+    maxDate: @$input.data('max-date')
+    yearsLine: @$input.data('years-line')
+    title: @$input.data('title')
+    withoutBottomPanel: @$input.data('without-bottom-panel')
+    cells: @$input.data('cells')
 
 
-class DatePicker extends PeriodPickerBase
-  options: ->
-    timepicker: false
-    # formatDate: @$input.data('format-date')
-    # dayOfWeekStart: @$input.data('week-start-day')
-    # disabledDates: @$input.data('disabled-dates') || []
-    # minDate: @$input.data('min-date')
-    # maxDate: @$input.data('max-date')
+# class DatePicker extends PeriodPickerBase
+#   options: ->
+#     timepicker: false
+#     formatDate: @$input.data('format-date')
+#     dayOfWeekStart: @$input.data('week-start-day')
+#     disabledDates: @$input.data('disabled-dates') || []
+#     minDate: @$input.data('min-date')
+#     maxDate: @$input.data('max-date')
 
 
-class TimePicker extends PeriodPickerBase
-  options: ->
-    datepicker: false
-    # defaultTime: @$input.data('default-time')
+# class TimePicker extends PeriodPickerBase
+#   options: ->
+#     datepicker: false
+#     defaultTime: @$input.data('default-time')
 
 
 $.simpleForm.onDomReady ($document) ->

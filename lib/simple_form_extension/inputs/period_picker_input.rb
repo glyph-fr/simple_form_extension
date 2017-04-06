@@ -33,13 +33,13 @@ module SimpleFormExtension
           options[:'period-date-picker'] = true
           options[:'week-start-day'] = _translate('shared.week_start_day')
           options[:'format-date'] = _translate('date.format.js')
+          options[:'years-line'] = false
+          options[:'title'] = false
+          options[:'without-bottom-panel'] = true
+          options[:'cells'] = [1, 1]
         end
 
         options
-      end
-
-      def icon
-        input_type == :time ? 'clock-o' : 'calendar'
       end
     end
   end

@@ -57,7 +57,7 @@ $yearsline-height: 30px;
 		background-size: 100% 100%;
 		background-position: center center;
 		background-repeat: no-repeat;
-		background-image: url('palete.svg');
+		background-image: image-url('simple_form_extension/period_picker/palete.svg');
 		margin-right: 9px;
 		margin-bottom: 2px;
 		position: relative;
@@ -69,7 +69,7 @@ $yearsline-height: 30px;
 		}
 	}
     .icon_clear {
-		background-image: url('clear.svg');
+		background-image: image-url('simple_form_extension/period_picker/clear.svg');
         margin-right: 0px;
         margin-left: 9px;
         transition: opacity 0.2s linear, background 0.2s linear;
@@ -173,7 +173,7 @@ $yearsline-height: 30px;
 	.period_picker_resizer,
 	.period_picker_max_min,
 	.period_picker_close {
-		background-image: url('buttons.svg');
+		background-image: image-url('simple_form_extension/period_picker/buttons.svg');
 		background-repeat: no-repeat;
 		opacity: .5;
 		right: 0;
@@ -616,7 +616,7 @@ $yearsline-height: 30px;
 		}
 	}
 	.xdsoft_navigate{
-		background:url('left.svg') no-repeat center center;
+		background: image-url('simple_form_extension/period_picker/left.svg') no-repeat center center;
 		position:absolute;
 		top:0px;
 		left:-13px;
@@ -631,7 +631,7 @@ $yearsline-height: 30px;
 			margin-top:2px;
 		}
 		&.xdsoft_navigate_next{
-			background-image:url('next.svg');
+			background-image: image-url('simple_form_extension/period_picker/next.svg');
 			left:auto;
 			right:-15px;
 		}
