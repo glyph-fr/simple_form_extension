@@ -12,10 +12,12 @@ fr:
         format:
           js: 'H:i'
           rails: '%H:%M'      
-      date:
+      date: &dates
         format:
           js: 'd/m/Y'
           rails: '%d/%m/%Y'
+      period_picker:
+        <<: *dates
       datetime:
         format:
           js: 'd/m/Y H:i'

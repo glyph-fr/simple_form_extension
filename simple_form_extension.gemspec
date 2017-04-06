@@ -23,6 +23,7 @@ Gem::Specification.new do |spec|
   spec.add_dependency 'simple_form'
   spec.add_dependency 'redactor-rails'
   spec.add_dependency 'selectize-rails'
+  spec.add_dependency 'momentjs-rails'
 
   spec.add_development_dependency 'bundler', '~> 1.5'
   spec.add_development_dependency 'rake'

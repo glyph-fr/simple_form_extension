@@ -1,6 +1,6 @@
 module SimpleFormExtension
   module Inputs
-    class PeriodPickerInput < SimpleForm::Inputs::PeriodPickerInput
+    class PeriodPickerInput < SimpleForm::Inputs::DateTimeInput
       include SimpleFormExtension::Translations
 
       delegate :content_tag, to: :template
@@ -16,14 +16,9 @@ module SimpleFormExtension
           input_html_options[:value] = I18n.l(value, format: format)
         end
 
-        content_tag(:div, class: 'input-group') do
+        content_tag(:div, class: 'periodpicker-container', data: { :'periodpicker-container' => true }) do
           @builder.text_field(attribute_name, input_html_options) +
-
-          content_tag(:span, class: 'input-group-btn') do
-            content_tag(:button, type: 'button', class: 'btn btn-default periodpicker-trigger') do
-              content_tag(:i, '', class: "fa fa-#{ icon }")
-            end
-          end
+          @builder.hidden_field(options[:end_date_field], data: { :'end-date-field' => true })
         end
       end
 
@@ -32,7 +27,10 @@ module SimpleFormExtension
       def type_specific_option
         options = { format: _translate("#{ input_type }.format.js") }
 
-        unless input_type == :time
+        if input_type == :time
+          options[:'period-time-picker'] = true
+        else 
+          options[:'period-date-picker'] = true
           options[:'week-start-day'] = _translate('shared.week_start_day')
           options[:'format-date'] = _translate('date.format.js')
         end

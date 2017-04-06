@@ -1,3 +1,5 @@
+#= require moment
+#= require moment/fr
 #= require redactor-rails/redactor
 #= require redactor-rails/langs/fr
 #= require redactor-rails/plugins
@@ -5,6 +7,8 @@
 #= require spinbox
 #= require jasny-bootstrap
 #= require jquery.datetimepicker
+#= require jquery.periodpicker
+#= require jquery.timepicker
 #= require bootstrap-slider
 #= require bootstrap-colorpicker
 #= require_self
