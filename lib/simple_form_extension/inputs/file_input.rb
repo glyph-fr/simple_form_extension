@@ -37,9 +37,7 @@ module SimpleFormExtension
       end
 
       def existing_file_tag
-        return '' unless has_file?
-
-        url = object.send(attribute_name).url
+        return '' unless file_exists?
 
         content_tag(:div, class: 'input-group help-block existing-file', data: { provides: 'existing-file'}) do
           content_tag(:span, class: 'input-group-addon') do
@@ -47,7 +45,7 @@ module SimpleFormExtension
           end +
 
           content_tag(:div, class: 'btn-group') do
-            content_tag(:a, class: 'btn btn-default ', href: url, target: '_blank', data: { toggle: 'existing-file' }) do
+            content_tag(:a, class: 'btn btn-default ', href: file_url, target: '_blank', data: { toggle: 'existing-file' }) do
               content_tag(:i, '', class: 'fa fa-file') +
               "&nbsp;".html_safe +
               object.send(:"#{ attribute_name }_file_name").html_safe
@@ -71,8 +69,17 @@ module SimpleFormExtension
         options[:remove_method] || :"remove_#{ attribute_name }"
       end
 
-      def has_file?
-        @has_file ||= object.send(:"#{ attribute_name }?")
+      def file_exists?
+        @file_exists ||= object.try(:"#{ attribute_name }?") ||
+                         object.try(attribute_name).try(:attached?)
+      end
+
+      def file_url
+        if object.try(:"#{ attribute_name }?")
+          object.send(attribute_name)
+        elsif object.try(attribute_name).try(:attached?)
+          object.try(attribute_name)
+        end
       end
     end
   end
