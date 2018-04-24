@@ -48,11 +48,22 @@ module SimpleFormExtension
             content_tag(:a, class: 'btn btn-default ', href: file_url, target: '_blank', data: { toggle: 'existing-file' }) do
               content_tag(:i, '', class: 'fa fa-file') +
               "&nbsp;".html_safe +
-              object.send(:"#{ attribute_name }_file_name").html_safe
+
+              existing_file_name
             end +
 
             remove_file_button
           end
+        end
+      end
+
+      def existing_file_name
+        return unless file_exists?
+
+        if object.try(:"#{ attribute_name }?")
+          object.send(:"#{ attribute_name }_file_name").html_safe
+        elsif (attachment = object.try(attribute_name)).try(:attached?)
+          attachment.filename.to_s
         end
       end
 
