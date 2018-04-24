@@ -2,7 +2,7 @@ class Slider
   constructor: (@$el) ->
     value = if (values = @$el.data('slider-value')?.toString().split(','))
       if values.length <= 1
-        value[0]
+        values[0]
       else
         (parseInt(value, 10) for value in values)
 
