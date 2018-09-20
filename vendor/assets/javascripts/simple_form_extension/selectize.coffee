@@ -23,6 +23,13 @@ class Selectize
     if (value = @$el.data('value'))
       @initializeValue(value)
 
+    # Fix for newest version of selectize that keeps the hidden input field
+    # instead of converting it to a text field when we call it on a hidden
+    # input.
+    @$el.next('.selectize-control')
+        .find('.selectize-input input[type="hidden"]')
+        .attr('type', 'text')
+
   initializeValue: (data) ->
     if @single
       @el.selectize.addOption(data)
