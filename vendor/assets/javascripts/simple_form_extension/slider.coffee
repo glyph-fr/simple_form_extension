@@ -2,9 +2,9 @@ class Slider
   constructor: (@$el) ->
     value = if (values = @$el.data('slider-value')?.toString().split(','))
       if values.length <= 1
-        parseInt(values[0], 10)
+        parseFloat(values[0], 10)
       else
-        (parseInt(value, 10) for value in values)
+        (parseFloat(value, 10) for value in values)
 
     if @$el.bootstrapSlider
       @$el.bootstrapSlider(value: value)
