@@ -61,8 +61,12 @@ module SimpleFormExtension
       def image_url
         if object.try(:"#{ attribute_name }?")
           object.send(attribute_name).url(image_style)
-        elsif object.try(attribute_name).try(:attached?)
-          object.try(attribute_name).variant(resize: "400x150>")
+        elsif (image = object.try(attribute_name)).try(:attached?)
+          if image.variable?
+            image.variant(resize: "400x150>")
+          else
+            image
+          end
         end
       end
 
