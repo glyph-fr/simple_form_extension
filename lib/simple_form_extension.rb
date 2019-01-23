@@ -9,6 +9,7 @@ module SimpleFormExtension
   eager_autoload do
     autoload :Translations
     autoload :ResourceNameHelper
+    autoload :FileConcern
     autoload :Components
     autoload :Inputs
   end

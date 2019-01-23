@@ -2,6 +2,7 @@ module SimpleFormExtension
   module Inputs
     class ImageInput < SimpleForm::Inputs::Base
       include SimpleFormExtension::Translations
+      include SimpleFormExtension::FileConcern
 
       delegate :content_tag, :image_tag, to: :template
 
@@ -27,42 +28,57 @@ module SimpleFormExtension
             end
           end +
 
-          content_tag(:div, class: 'fileinput-preview thumbnail') do
-            existing_image_tag
-          end
+          existing_image_tag
         end
       end
 
       def existing_image_tag
         # If an existing paperclip image is found
-        if image_exists?
-          container_style = 'position: relative; height: 100%; width: 100%; min-height: 50px;min-width: 58px; display: block;'
-
-          content_tag(:div, style: container_style, data: { provides: 'existing-file' }) do
-            image_tag(image_url, style: 'height: 100%; width: 100%; display: block;', data: { toggle: 'existing-file' }) +
-            remove_image_button
-          end
+        if file_exists?
+          file_preview_and_remove_button
         else
-          content_tag(:div, '', class: 'empty-thumbnail')
+          content_tag(:div, class: 'fileinput-preview thumbnail') do
+            content_tag(:div, '', class: 'empty-thumbnail')
+          end
         end
       end
 
-      # Returns true if a paperclip or active_storage attachment already exists
-      # for that model field
-      #
-      def image_exists?
-        object.try(:"#{ attribute_name }?") ||
-          object.try(attribute_name).try(:attached?)
+      def image
+        @image ||= object.try(attribute_name)
+      end
+
+      def file_preview_and_remove_button
+        if image.variable? || image.previewable?
+          container_style = 'position: relative; height: 100%; width: 100%; min-height: 50px;min-width: 58px; display: block;'
+
+          content_tag(:div, class: 'fileinput-preview thumbnail') do
+            content_tag(:div, style: container_style, data: { provides: 'existing-file' }) do
+              image_tag(
+                file_url,
+                style: 'height: 100%; width: 100%; display: block;', data: { toggle: 'existing-file' }
+              ) +
+              remove_image_button
+            end
+          end
+        else
+          super
+        end
       end
 
       # Returns the paperclip or active_storage attachment url to show in the
       # preview thumbnail
       #
-      def image_url
+      def file_url
         if object.try(:"#{ attribute_name }?")
           object.send(attribute_name).url(image_style)
-        elsif object.try(attribute_name).try(:attached?)
-          object.try(attribute_name).variant(resize: "400x150>")
+        elsif (attachment = object.try(attribute_name)).try(:attached?)
+          if attachment.variable?
+            attachment.variant(resize: "400x150>")
+          elsif attachment.previewable?
+            attachment.preview(resize: "400x150>")
+          else
+            attachment.service_url
+          end
         end
       end
 
@@ -75,10 +91,6 @@ module SimpleFormExtension
           content_tag(:i, '', class: 'fa fa-remove', data: { :'removed-class' => 'fa fa-refresh' }) +
           @builder.hidden_field(remove_attachment_method, class: 'remove-file-input', value: nil)
         end
-      end
-
-      def remove_attachment_method
-        options[:remove_method] || :"remove_#{ attribute_name }"
       end
 
       def image_style
