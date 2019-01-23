@@ -89,7 +89,7 @@ module SimpleFormExtension
         if object.try(:"#{ attribute_name }?")
           object.send(attribute_name)
         elsif object.try(attribute_name).try(:attached?)
-          object.try(attribute_name)
+          object.try(attribute_name).try(:service_url)
         end
       end
     end
