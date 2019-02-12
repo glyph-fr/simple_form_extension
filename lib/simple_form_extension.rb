@@ -19,6 +19,9 @@ module SimpleFormExtension
   #
   mattr_accessor :resource_name_methods
   @@resource_name_methods = [:name, :title]
+
+  mattr_accessor :default_image_input_accept
+  @@default_image_input_accept = "image/jpeg,image/png,image/gif"
 end
 
 SimpleForm::Inputs::Base.send(:include, SimpleFormExtension::Components::Icons)

@@ -8,6 +8,7 @@ module SimpleFormExtension
 
       def input(wrapper_options = nil)
         input_html_options[:class] << "image-upload"
+        input_html_options[:accept] ||= SimpleFormExtension.default_image_input_accept
 
         input_markup
       end

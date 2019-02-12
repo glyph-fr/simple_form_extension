@@ -278,6 +278,20 @@ $.get('/form/url', function(response) {
 })
 ```
 
+## Disabling image input file type validation 
+
+By default, Simple Form Extension restricts the image file types users can
+select to JPEG, PNG and GIF file types. This is done by using the `accept` 
+html attribute of the input tag.
+
+You can turn off this behavior by :
+
+- Setting `SimpleFormExtension.default_image_input_accept = nil` in an 
+initializer for an app-wide setting
+- Setting `form.input :image, input_html: { accept: nil }` locally on the fields
+you want to allow other input types
+
+
 ## Contributing
 
 1. Fork it ( http://github.com/xana68/simple_form_extension/fork )
