@@ -170,7 +170,8 @@ module SimpleFormExtension
       end
 
       def enum?
-        object_class.defined_enums.key?(attribute_name.to_s)
+        object_class.respond_to?(:defined_enums) && 
+          object_class.defined_enums.key?(attribute_name.to_s)
       end
 
       def enum_options
