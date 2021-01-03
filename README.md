@@ -142,7 +142,7 @@ You can customize the name of the setter that will be called with the
 #### :selectize
 
 The selectize field allows you to create a powerful select field using the
-[Selectize](https://brianreavis.github.io/selectize.js/) javascript plugin.
+[Selectize](https://selectize.github.io/selectize.js/) javascript plugin.
 
 ```ruby
 = form.input :items, as: :selectize, collection: Item.all
