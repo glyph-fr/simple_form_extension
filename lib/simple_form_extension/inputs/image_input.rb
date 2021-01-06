@@ -70,13 +70,13 @@ module SimpleFormExtension
       # preview thumbnail
       #
       def file_url
-        if object.try(:"#{ attribute_name }?")
+        if paperclip_attachment_attached?
           object.send(attribute_name).url(image_style)
-        elsif (attachment = object.try(attribute_name)).try(:attached?)
-          if attachment.variable?
-            attachment.variant(resize: "400x150>")
-          elsif attachment.previewable?
-            attachment.preview(resize: "400x150>")
+        elsif activestorage_attachment_attached?
+          attachment = object.send(attribute_name)
+
+          if attachment.representable?
+            attachment.representation(resize: "400x150>")
           else
             attachment.service_url
           end

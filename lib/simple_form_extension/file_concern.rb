@@ -26,9 +26,10 @@ module SimpleFormExtension
     end
 
     def existing_file_name
-      if object.try(:"#{ attribute_name }?")
+      if paperclip_attachment_attached?
         object.send(:"#{ attribute_name }_file_name").html_safe
-      elsif (attachment = object.try(attribute_name)).try(:attached?)
+      elsif activestorage_attachment_attached?
+        attachment = object.send(attribute_name)
         attachment.filename.to_s
       end
     end
@@ -47,16 +48,25 @@ module SimpleFormExtension
     end
 
     def file_exists?
-      @file_exists ||= object.try(:"#{ attribute_name }?") ||
-                       object.try(attribute_name).try(:attached?)
+      @file_exists ||= paperclip_attachment_attached? || activestorage_attachment_attached?
     end
 
     def file_url
-      if object.try(:"#{ attribute_name }?")
+      if paperclip_attachment_attached?
         object.send(attribute_name)
-      elsif object.try(attribute_name).try(:attached?)
-        object.try(attribute_name).try(:service_url)
+      elsif activestorage_attachment_attached?
+        object.send(attribute_name).try(:service_url)
       end
+    end
+
+    def paperclip_attachment_attached?
+      @paperclip_attachment_attached ||= object.try(:"#{ attribute_name }?")
+    end
+
+    def activestorage_attachment_attached?
+      @activestorage_attachment_attached ||=
+        object.try(attribute_name).try(:attached?) &&
+        object.try(attribute_name).blob
     end
   end
 end
