@@ -55,7 +55,7 @@ module SimpleFormExtension
       if paperclip_attachment_attached?
         object.send(attribute_name)
       elsif activestorage_attachment_attached?
-        object.send(attribute_name).try(:service_url)
+        object.send(attribute_name).try(:service_url) || object.send(attribute_name).try(:url)
       end
     end
 
