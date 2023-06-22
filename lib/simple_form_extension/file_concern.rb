@@ -14,7 +14,7 @@ module SimpleFormExtension
 
     def file_preview_and_remove_button
       content_tag(:div, class: 'btn-group') do
-        content_tag(:a, class: 'btn btn-default ', href: file_url, target: '_blank', data: { toggle: 'existing-file' }) do
+        template.link_to(file_url, class: 'btn btn-default ', target: '_blank', data: { toggle: 'existing-file' }) do
           content_tag(:i, '', class: 'fa fa-file') +
           "&nbsp;".html_safe +
 
@@ -55,7 +55,7 @@ module SimpleFormExtension
       if paperclip_attachment_attached?
         object.send(attribute_name)
       elsif activestorage_attachment_attached?
-        object.send(attribute_name).try(:service_url) || object.send(attribute_name).try(:url)
+        template.polymorphic_url(object.send(attribute_name))
       end
     end
 
