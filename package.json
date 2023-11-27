@@ -1,0 +1,30 @@
+{
+  "name": "simple_form_extension",
+  "version": "1.0.0",
+  "description": "Javascript engine for Simple Form Extension",
+  "main": "dist/index.js",
+  "files": [
+    "dist"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/respublica-conseil/simple_form_extension.git"
+  },
+  "author": "Valentin Ballestrino",
+  "license": "MIT",
+  "homepage": "https://github.com/respublica-conseil/simple_form_extension",
+  "scripts": {
+    "build": "esbuild app/javascripts/index.js --bundle --sourcemap --outfile=dist/index.js"
+  },
+  "dependencies": {
+    "sifter": "^0.6.0",
+    "@selectize/selectize": "^0.13.3"
+  },
+  "peerDependencies": {
+    "jquery": "^3.6.0",
+    "boostrap": "^3.4.1"
+  },
+  "devDependencies": {
+    "esbuild": "^0.19.8"
+  }
+}

@@ -13,7 +13,6 @@ The following custom Simple Form inputs are available :
 * file
 * image
 * numeric
-* redactor
 * selectize
 * slider
 * color
@@ -92,7 +91,6 @@ This inputs are the following :
 * [image](#image)
 * [selectize](#selectize)
 * [slider](#slider)
-* [redactor](#redactor)
 * [color](#color)
 
 ### New Inputs usage
@@ -204,18 +202,6 @@ Options are the following :
 
 Used javascript plugin : [Bootstrap Slider](https://github.com/seiyria/bootstrap-slider)
 
-#### :redactor
-
-There are not options for now on this redactor input.
-
-To use it, just call it as usual :
-
-```ruby
-= form.input :content, as: :redactor
-```
-
-Used javascript plugin : [Redactor](https://github.com/glyph-fr/redactor-rails)
-
 #### :color
 
 The color input allows to add a colorpicker to a string field.
@@ -243,7 +229,7 @@ $('body').popover(selector: '[rel="popover"]')
 Simple Form Extension comes with several javascript plugins built-in for the
 inputs to work properly.
 
-Plugins are automatically initialized on page load, with or without Turbolinks.
+Plugins are automatically initialized on page load, with or without Turbo.
 
 This means that for a classic page you don't need to initialize anything yourself.
 

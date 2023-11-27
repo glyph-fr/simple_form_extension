@@ -1,6 +1,4 @@
 require 'simple_form_extension/version'
-require 'redactor-rails'
-require 'selectize-rails'
 require 'simple_form'
 
 module SimpleFormExtension
@@ -18,14 +16,14 @@ module SimpleFormExtension
   # the name of a resource to display it instead of calling #to_s
   #
   mattr_accessor :resource_name_methods
-  @@resource_name_methods = [:name, :title]
+  @@resource_name_methods = %i[name title]
 
   mattr_accessor :default_image_input_accept
-  @@default_image_input_accept = "image/jpeg,image/png,image/gif"
+  @@default_image_input_accept = 'image/jpeg,image/png,image/gif'
 end
 
-SimpleForm::Inputs::Base.send(:include, SimpleFormExtension::Components::Icons)
-SimpleForm::Inputs::Base.send(:include, SimpleFormExtension::Components::Popovers)
+SimpleForm::Inputs::Base.include SimpleFormExtension::Components::Icons
+SimpleForm::Inputs::Base.include SimpleFormExtension::Components::Popovers
 
 SimpleForm.custom_inputs_namespaces << 'SimpleFormExtension::Inputs'
 
